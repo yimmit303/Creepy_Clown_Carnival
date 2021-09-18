@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Main_Level/Player.gd" type="Script" id=1]
 [ext_resource path="res://Main_Level/DebugDraw.gd" type="Script" id=2]
 [ext_resource path="res://Main_Level/ArcadeMachine.gd" type="Script" id=3]
+[ext_resource path="res://Main_Level/PlayerInteract.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -64,9 +65,10 @@ shape = SubResource( 3 )
 
 [node name="HandCollider" type="RigidBody" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.718191, 0, 0 )
+script = ExtResource( 4 )
 
 [node name="PlayerHandCollisionShape" type="CollisionShape" parent="Player/HandCollider"]
-transform = Transform( 0.224366, 0, -7.97108e-16, 0, 0.144239, 0, 0, 0, 1, -0.0166836, 0.756, -2.1361 )
+transform = Transform( 0.224366, 0, -7.97108e-16, 0, 0.144239, 0, 0, 0, 1.09984, -0.0166836, 0.756, -2.24504 )
 shape = SubResource( 4 )
 
 [node name="PlayerHand" type="MeshInstance" parent="Player/HandCollider"]

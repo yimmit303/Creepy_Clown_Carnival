@@ -19,13 +19,24 @@ func _ready():
 	
 	body.connect("body_entered", self, "on_player_interact")
 	
+	body.connect("body_exited", self, "on_player_leave")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func on_player_leave(body):
+	print("arcade no longer touching ", body.name)
+	if(body.name == player.name):
+		print("not touching player.")
+	if(body.name == hand.name):
+		print("not hand on machine.")
+		hand.ready_to_play = false
 
 func on_player_interact(body):
 	print("arcade machine touched: ", body.name)
 	if(body.name == player.name):
 		print("touched player!!!")
 	if(body.name == hand.name):
-		print("start game!")
+		print("hand on machine!!!")
