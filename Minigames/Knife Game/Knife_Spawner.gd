@@ -20,7 +20,6 @@ func _process(delta):
 		delay = max_delay
 		set_spawn = false
 		var new_knife = knife.instance()
-		new_knife.position = position
 		self.add_child(new_knife)
 	else:
 		delay -= delta
