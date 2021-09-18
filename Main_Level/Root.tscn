@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Main_Level/Player.gd" type="Script" id=1]
 [ext_resource path="res://Main_Level/DebugDraw.gd" type="Script" id=2]
@@ -25,7 +25,14 @@ size = Vector3( 10, 2, 5 )
 
 [sub_resource type="CubeMesh" id=9]
 
+[sub_resource type="SpatialMaterial" id=13]
+flags_unshaded = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.05
+
 [sub_resource type="SpatialMaterial" id=10]
+next_pass = SubResource( 13 )
 albedo_color = Color( 0.431373, 0.396078, 0.396078, 1 )
 
 [sub_resource type="CubeMesh" id=11]

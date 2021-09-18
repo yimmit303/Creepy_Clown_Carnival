@@ -57,16 +57,16 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func on_player_leave(body):
-	#print("arcade no longer touching ", body.name)
-	if(body.name == player.name or body.name == hand.name):
+func on_player_leave(IncomingBody):
+	#print("arcade no longer touching ", IncomingBody.name)
+	if(IncomingBody.name == player.name or IncomingBody.name == hand.name):
 		#print("not hand on machine.")
 		hand.ready_to_play = false
 		hand.currentMachine = null
 
-func on_player_interact(body):
-	#print("arcade machine touched: ", body.name)
-	if(body.name == player.name or body.name == hand.name):
+func on_player_interact(IncomingBody):
+	#print("arcade machine touched: ", IncomingBody.name)
+	if(IncomingBody.name == player.name or IncomingBody.name == hand.name):
 		#print("touched player!!!")
 		hand.currentMachine = self
 		hand.ready_to_play = true
