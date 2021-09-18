@@ -18,6 +18,7 @@ var camera_pos
 var MOUSE_SENSITIVITY = 0.05
 
 var interact = false
+var hand
 
 var main_camera
 var cinematic_camera
@@ -27,13 +28,9 @@ var cinematic_camera_ready = false
 var current_minigame = null
 
 var debugCamera
-var stupidHandMovesWhenItShouldnt
 
 func swapCamera(currentMachine):
 	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
-	stupidHandMovesWhenItShouldnt = $HandCollider/PlayerHandCollisionShape.get_global_transform()
-	print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
-	
 	
 	if(!in_minigame):
 		in_minigame = true
@@ -70,6 +67,8 @@ func _ready():
 	rotation_helper = $Pivot
 	camera_pos = $Pivot/CameraPivot
 	
+	hand = $HandCollider
+	
 	main_camera = $Pivot/CameraPivot/Camera
 	#cinematic_camera = $Pivot/CameraPivot/InterpolatedCamera
 	cinematic_camera = get_node("../CinematicCamera")
@@ -85,23 +84,26 @@ func _physics_process(delta):
 			check_camera_progress()
 		else:
 			#start minigame here!
-			if(current_minigame and current_minigame.started == false):
+			if(current_minigame and !current_minigame.running):
+				print('in player starting game')
 				self.visible = false
+				hand.set_monitoring(false)
+				hand.set_monitorable(false)
+				#handModel.visible = false
 				current_minigame.startGame()
-			else:
-				self.visible = true
-				in_minigame = false
-				
-				main_camera.current = true
-				debugCamera.current = false
-				cinematic_camera.current = false
-				
-				print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
-				#$HandCollider/PlayerHandCollisionShape.transform = stupidHandMovesWhenItShouldnt
-				$HandCollider/PlayerHandCollisionShape.set_global_transform(stupidHandMovesWhenItShouldnt)
-				$HandCollider.angular_velocity = Vector3.ZERO
-				$HandCollider.linear_velocity = Vector3.ZERO
-				print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
+
+func stop_mini_game():
+	print("stopping game")
+	self.visible = true
+	#handModel.visible = true
+	in_minigame = false
+	
+	hand.set_monitoring(true)
+	hand.set_monitorable(true)
+	
+	main_camera.current = true
+	debugCamera.current = false
+	cinematic_camera.current = false
 
 func check_camera_progress():
 	var location = cinematic_camera.get_global_transform().origin
