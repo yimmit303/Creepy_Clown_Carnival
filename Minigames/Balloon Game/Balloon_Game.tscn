@@ -123,7 +123,6 @@ stream = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="ClownWorld"]
 
 [node name="LoseScreen" parent="." instance=ExtResource( 12 )]
-modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 956.463, 519.861 )
 
 [node name="WinScreen" parent="." instance=ExtResource( 13 )]
@@ -152,3 +151,4 @@ stream = ExtResource( 16 )
 [connection signal="balloon_popped" from="DartThrower" to="." method="_on_balloon_popped"]
 [connection signal="dart_thrown" from="DartThrower" to="DartCounter" method="_on_dart_thrown"]
 [connection signal="game_lost" from="DartCounter" to="." method="_on_game_lost"]
+[connection signal="time_out" from="Timer" to="." method="_on_game_lost"]

@@ -1,18 +1,31 @@
 extends Node2D
 
-var score = 0
-var life = 10
+var total = 0
+var life = 5
 
-func _ready():
-	pass # Replace with function body.
 
 func scored(score):
 	if score < 0:
-		# damaging wedge
 		life -= 1
+		_on_game_lost()
 	else:
-		score += 1
+		total += 1
+		_on_game_won()
 		
+func make_inactive():
+	$Knife_Spawner.disable()
+	
 func _process(delta):
-	# TODO add process in for gameover
-	pass
+	$Scoreboard.print_text("Lives: " + str(life) + "\n" + "Score: " + str(total))
+	
+func _on_game_won():
+	if total >= 5:
+		make_inactive()
+		$WinScreen.play()
+		yield($WinScreen, "done_playing")
+
+func _on_game_lost():
+	if life <= 0:
+		make_inactive()
+		$LoseScreen.play()
+		yield($LoseScreen, "done_playing")
