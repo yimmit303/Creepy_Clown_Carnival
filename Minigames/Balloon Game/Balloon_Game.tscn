@@ -1,12 +1,27 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Minigames/Balloon Game/BalloonSpawner.gd" type="Script" id=1]
 
 [node name="Spatial" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 50.0
-margin_top = 36.0
-margin_right = 1878.0
-margin_bottom = 1044.0
+[node name="BG" type="ColorRect" parent="."]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 1720.0
+margin_bottom = 980.0
+color = Color( 0.258824, 0.176471, 0.0901961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 617.942
+margin_top = 196.058
+margin_right = 695.942
+margin_bottom = 272.058
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BalloonSpawner" type="Node2D" parent="."]
+script = ExtResource( 1 )
