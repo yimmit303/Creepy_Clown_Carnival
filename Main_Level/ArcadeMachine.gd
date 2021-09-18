@@ -9,7 +9,7 @@ func _ready():
 	#player = $Player
 	
 	player = get_node("../Player")
-	hand = get_node("../Player/HandBody")
+	hand = get_node("../Player/HandCollider")
 	#print(player)
 	
 	body = $ArcadeRigidBody
