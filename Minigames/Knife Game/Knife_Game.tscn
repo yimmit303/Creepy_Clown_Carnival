@@ -9,3 +9,4 @@
 position = Vector2( 1570.72, 817.415 )
 
 [node name="Knife_Spawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( 281.93, 822.705 )
