@@ -7,6 +7,10 @@ const UP = Vector2(0, -1)
 const GRAVITY = 1.5
 const MAXFALL = 200
 const FRICTION = 0.05
+var wheel = null
+
+func _ready():
+	wheel = self.get_parent().get_parent().get_node("Wheel")
 
 func throw(force, angle):
 	var x = cos(angle) * force
@@ -14,7 +18,6 @@ func throw(force, angle):
 	self.vel = Vector2(x, y)
 
 func reparent():
-	var wheel = self.get_parent().get_parent().get_child(0)
 	var old = self.get_parent()
 	var transformation = get_global_transform()
 	old.remove_child(self)
@@ -22,7 +25,6 @@ func reparent():
 	set_global_transform(transformation)
 
 func hit_wheel():
-	var wheel = self.get_parent().get_parent().get_child(0)
 	wheel.hit()
 
 func _physics_process(delta):
