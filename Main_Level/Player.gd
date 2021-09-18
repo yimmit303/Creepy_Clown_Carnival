@@ -18,19 +18,103 @@ var camera_pos
 var MOUSE_SENSITIVITY = 0.05
 
 var interact = false
+var hand
+
+var main_camera
+var cinematic_camera
+
+var in_minigame = false
+var cinematic_camera_ready = false
+var current_minigame = null
+
+var debugCamera
+
+func swapCamera(currentMachine):
+	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
+	
+	if(!in_minigame):
+		in_minigame = true
+		cinematic_camera.transform = main_camera.get_global_transform()
+		cinematic_camera.current = true
+		main_camera.current = false
+		
+		#print("cinematic_camera.current: ", cinematic_camera.current, " :: main_camera.current: ", main_camera.current)
+		cinematic_camera.transform.origin -= - 2*Vector3.UP #puts camera behind and above player slightly (looks cooler)
+		
+		cinematic_camera.set_target_path(currentMachine.screen.get_path())
+		cinematic_camera.enabled = true
+		cinematic_camera_ready = false
+		
+		current_minigame = currentMachine
+
+func swapBack():
+	#cinematic_camera.transform = main_camera.get_global_transform()
+	cinematic_camera.current = true
+	main_camera.current = false
+	
+	#print("cinematic_camera.current: ", cinematic_camera.current, " :: main_camera.current: ", main_camera.current)
+	cinematic_camera.transform.origin -= - 2*Vector3.UP #puts camera behind and above player slightly (looks cooler)
+	
+	cinematic_camera.set_target_path(main_camera.get_path())
+	cinematic_camera.enabled = true
+	cinematic_camera_ready = false
+	
+	current_minigame = null
+	
 
 func _ready():
 	camera = $Pivot/CameraPivot/Camera
 	rotation_helper = $Pivot
 	camera_pos = $Pivot/CameraPivot
-
+	
+	hand = $HandCollider
+	
+	main_camera = $Pivot/CameraPivot/Camera
+	#cinematic_camera = $Pivot/CameraPivot/InterpolatedCamera
+	cinematic_camera = get_node("../CinematicCamera")
+	debugCamera = get_node("../Debug/DebugCamera")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	process_input(delta)
-	process_movement(delta)
+	if(!in_minigame):
+		process_movement(delta)
+	else:
+		if(!cinematic_camera_ready):
+			check_camera_progress()
+		else:
+			#start minigame here!
+			if(current_minigame and !current_minigame.running):
+				print('in player starting game')
+				self.visible = false
+				hand.set_monitoring(false)
+				hand.set_monitorable(false)
+				#handModel.visible = false
+				current_minigame.startGame()
+
+func stop_mini_game():
+	print("stopping game")
+	self.visible = true
+	#handModel.visible = true
+	in_minigame = false
 	
-func process_input(delta):
+	hand.set_monitoring(true)
+	hand.set_monitorable(true)
+	
+	main_camera.current = true
+	debugCamera.current = false
+	cinematic_camera.current = false
+
+func check_camera_progress():
+	var location = cinematic_camera.get_global_transform().origin
+	var destination = get_node(cinematic_camera.get_target_path()).get_global_transform().origin
+	var diff = location - destination
+	
+	if(diff.length() < 0.01):
+		cinematic_camera.enabled = false
+		cinematic_camera_ready = true
+
+func process_input(_delta):
 	# ----------------------------------
 	# Walking
 	dir = Vector3()

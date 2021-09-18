@@ -1,4 +1,4 @@
-extends RigidBody
+extends Area
 
 var player 
 var ready_to_play = false
@@ -12,12 +12,15 @@ func _ready():
 	
 	collisionShape = $PlayerHandCollisionShape
 
-	set_contact_monitor(true)
-	set_max_contacts_reported(5)
+	#set_contact_monitor(true)
+	#set_max_contacts_reported(5)
+	set_monitorable(true)
+	set_monitoring(true)
 	
-	self.connect("body_entered", self, "enable_outline")
-	
-	self.connect("body_exited", self, "disable_outline")
+	connect("body_entered", self, "enable_outline")
+	connect("body_exited", self, "disable_outline")
+	connect("area_entered", self, "enable_outline")
+	connect("area_exited", self, "disable_outline")
 	
 func enable_outline(body):
 	#print(body.name)
@@ -39,7 +42,10 @@ func enable_outline(body):
 				currentMaterial.set_next_pass(nextPass)
 			else:
 				nextPass.set_grow(0.05)
-	print("enable that boi")
+	#print("enable that boi")
+	
+	ready_to_play = true
+	currentMachine = body
 
 func disable_outline(body):
 	#print(body.name)
@@ -60,7 +66,9 @@ func disable_outline(body):
 				currentMaterial.set_next_pass(nextPass)
 			else:
 				nextPass.set_grow(0.00)
-	print("disable that boi")
+	#print("disable that boi")
+	ready_to_play = false
+	currentMachine = null
 	
 func _process(delta):
 	if(player.in_minigame):
