@@ -1,15 +1,18 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var score = 0
+var life = 10
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func scored(score):
+	if score < 0:
+		# damaging wedge
+		life -= 1
+	else:
+		score += 1
+		
+func _process(delta):
+	# TODO add process in for gameover
+	pass

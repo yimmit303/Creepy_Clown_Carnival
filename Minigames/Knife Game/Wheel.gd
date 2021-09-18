@@ -1,4 +1,5 @@
 extends KinematicBody2D
+var difficulty  = 1
 var rate = 15
 var cur_angle = 0
 
@@ -8,18 +9,19 @@ func _ready():
 
 func turn(n, dt):
 	# Turns wheel n degrees per second
-	var angle = (n * dt) * (PI / 180)
-	cur_angle += (n * dt)
+	var angle = (n * dt) * (PI / 180) * difficulty
+	cur_angle += (n * dt) * difficulty
 	self.rotate(angle)
 
 func hit():
-	var good = false
+	var score = 0
 	var turned = int(cur_angle) % 360
 	var slice = turned / 45
 	if slice % 2 == 0:
-		good = true
+		score = 1
 	else:
-		good = false
+		score = -1
+	self.get_parent().scored(score)
 
 func _process(delta):
 	turn(rate, delta)
