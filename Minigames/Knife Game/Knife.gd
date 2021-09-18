@@ -21,6 +21,10 @@ func reparent():
 	wheel.add_child(self)
 	set_global_transform(transformation)
 
+func hit_wheel():
+	var wheel = self.get_parent().get_parent().get_child(0)
+	wheel.hit()
+
 func _physics_process(delta):
 	if not stuck:
 		self.vel.x -= FRICTION
@@ -34,7 +38,9 @@ func _physics_process(delta):
 			stuck = true
 			self.vel = Vector2.ZERO
 			reparent()
+			hit_wheel()
 	if stuck:
 		lifetime -= delta
 		if lifetime <= 0:
 			queue_free()
+

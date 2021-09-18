@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "#uniform sampler2D ViewportTexture;
+"
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+//uniform sampler2D ViewportTexture;
+
+void fragment() {
+	vec3 col = -8.0 * texture(TEXTURE, UV).xyz;
+	
+	col += texture(TEXTURE, UV + vec2(0.0, SCREEN_PIXEL_SIZE.y)).xyz;
+	col += texture(TEXTURE, UV + vec2(0.0, -SCREEN_PIXEL_SIZE.y)).xyz;
+	
+	col += texture(TEXTURE, UV + vec2(SCREEN_PIXEL_SIZE.x, 0.0)).xyz;
+	col += texture(TEXTURE, UV + vec2(-SCREEN_PIXEL_SIZE.x, 0.0)).xyz;
+	
+	col += texture(TEXTURE, UV + SCREEN_PIXEL_SIZE.xy).xyz;
+	col += texture(TEXTURE, UV - SCREEN_PIXEL_SIZE.xy).xyz;
+	
+	col += texture(TEXTURE, UV + vec2(-SCREEN_PIXEL_SIZE.x, SCREEN_PIXEL_SIZE.y)).xyz;
+	col += texture(TEXTURE, UV + vec2(SCREEN_PIXEL_SIZE.x, -SCREEN_PIXEL_SIZE.y)).xyz;
+	
+	vec3 Default = texture(TEXTURE, UV).xyz;
+	Default -= col;
+	
+	COLOR.xyz = Default;
+}
+"
+
+[resource]
+shader = SubResource( 2 )
+script = SubResource( 1 )
