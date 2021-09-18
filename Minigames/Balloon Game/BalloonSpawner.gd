@@ -10,10 +10,9 @@ func _ready():
 		for y in range(3):
 			var new_balloon = Balloon.instance()
 			new_balloon.position = Vector2(600 + 175 * x + (y % 2 * 100), 350 + 200 * y)
-			new_balloon.scale = Vector2(6, 6)
+			new_balloon.scale = Vector2(0.75, 0.75)
+			new_balloon.modulate = Color().from_hsv(randf(), 1, 1)
 			self.add_child(new_balloon)
-	var children = self.get_children()
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
