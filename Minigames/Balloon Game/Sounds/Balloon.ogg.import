@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Balloon.ogg-7d50a9ed9831dace7d8862489159ba05.oggstr"
+
+[deps]
+
+source_file="res://Minigames/Balloon Game/Sounds/Balloon.ogg"
+dest_files=[ "res://.import/Balloon.ogg-7d50a9ed9831dace7d8862489159ba05.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
