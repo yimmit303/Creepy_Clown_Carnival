@@ -6,7 +6,7 @@
 [ext_resource path="res://Main_Level/Scripts/MinigameInteract.gd" type="Script" id=4]
 [ext_resource path="res://Main_Level/Scripts/PlayerHandInteract.gd" type="Script" id=5]
 [ext_resource path="res://Main_Level/Materials/PostProcessing.tres" type="Material" id=6]
-[ext_resource path="res://Main_Level/TwinkleEffect.gd" type="Script" id=7]
+[ext_resource path="res://Main_Level/Scripts/TwinkleEffect.gd" type="Script" id=7]
 [ext_resource path="res://Main_Level/Materials/StarTwinkleMask.png" type="Texture" id=8]
 [ext_resource path="res://Main_Level/Scripts/MinigameClass.gd" type="Script" id=9]
 
