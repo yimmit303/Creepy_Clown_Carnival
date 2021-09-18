@@ -3,7 +3,7 @@ extends Node2D
 signal time_out
 
 var counting = false
-var time_left = 20
+export var time_left = 20
 
 func _process(delta):
 	if counting:
