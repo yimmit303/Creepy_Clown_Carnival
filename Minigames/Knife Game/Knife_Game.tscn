@@ -17,9 +17,9 @@ position = Vector2( 1570.98, 817.15 )
 position = Vector2( 281.93, 822.705 )
 
 [node name="Scoreboard" type="RichTextLabel" parent="."]
-margin_left = 126.0
+margin_left = 124.942
 margin_top = 121.0
-margin_right = 283.0
+margin_right = 281.942
 margin_bottom = 181.0
 rect_scale = Vector2( 1, 1.01354 )
 text = "Lives:
