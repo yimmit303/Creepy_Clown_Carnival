@@ -4,6 +4,30 @@ var body
 var player 
 var hand
 
+var screen
+var normalDistanceFromScreen = 15
+var started = false
+
+func startGame():
+	#this will start the game
+	started = true
+	print("starting game now!")
+	
+	#wait
+	var t = Timer.new()
+	t.set_wait_time(3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	#done waiting
+	
+	finishGame()
+	
+func finishGame():
+	started = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#player = $Player
@@ -13,6 +37,14 @@ func _ready():
 	#print(player)
 	
 	body = $ArcadeRigidBody
+	screen = $ArcadeRigidBody/ArcadeScreen/CameraSnapLocation #this must be oriented so that it faces the screen
+	
+	var physicalScreen = $ArcadeRigidBody/ArcadeScreen
+	#var forward = Vector3.ZERO
+	#forward = physicalScreen.get_global_transform().basis.y
+	#screen.transform.origin += normalDistanceFromScreen * forward
+	
+	screen.transform.origin.x = -normalDistanceFromScreen
 	
 	body.set_contact_monitor(true)
 	body.set_max_contacts_reported(5)
@@ -25,22 +57,16 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
 func on_player_leave(body):
-	print("arcade no longer touching ", body.name)
-	if(body.name == player.name):
-		print("not touching player.")
-		hand.currentMachine = null
-	if(body.name == hand.name):
-		print("not hand on machine.")
+	#print("arcade no longer touching ", body.name)
+	if(body.name == player.name or body.name == hand.name):
+		#print("not hand on machine.")
 		hand.ready_to_play = false
 		hand.currentMachine = null
 
 func on_player_interact(body):
-	print("arcade machine touched: ", body.name)
-	if(body.name == player.name):
-		print("touched player!!!")
+	#print("arcade machine touched: ", body.name)
+	if(body.name == player.name or body.name == hand.name):
+		#print("touched player!!!")
 		hand.currentMachine = self
-	if(body.name == hand.name):
-		print("hand on machine!!!")
-		hand.currentMachine = self
+		hand.ready_to_play = true

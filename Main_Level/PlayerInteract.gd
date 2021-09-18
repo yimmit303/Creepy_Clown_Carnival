@@ -4,33 +4,24 @@ var player
 var ready_to_play = false
 var currentMachine #is set by arcade machine
 
+var collisionShape
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("../../Player")
+	
+	collisionShape = $PlayerHandCollisionShape
 
 	set_contact_monitor(true)
 	set_max_contacts_reported(5)
 	
-	connect("body_entered", self, "on_player_interact")
-	
-	connect("body_exited ", self, "on_player_leave")
-
-func on_player_leave(body):
-	print("no longer touching ", body.name)
-	ready_to_play = false
-
-func on_player_interact(body):
-	print("player hand touched ", body.name)
-	ready_to_play = true
-	
-	
 func _process(delta):
-	if(ready_to_play and player.interact):
-		print("start game!")
+	if(ready_to_play and player.interact and !player.in_minigame):
+		#print("start game!")
 		
-		player.swapCamera(currentMachine)
-		
-		#start game here or something
-		
-		player.interact = false
-		ready_to_play = false
+		#ready_to_play and currentMachine are set via arcade machine
+		if(currentMachine):
+			player.swapCamera(currentMachine)
+			
+			player.interact = false
+			ready_to_play = false
