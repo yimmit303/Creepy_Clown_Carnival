@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Clown_Laugh.wav-3828090f9533a091f654a7b4fee662a1.sample"
+
+[deps]
+
+source_file="res://Minigames/Balloon Game/Sounds/Clown_Laugh.wav"
+dest_files=[ "res://.import/Clown_Laugh.wav-3828090f9533a091f654a7b4fee662a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

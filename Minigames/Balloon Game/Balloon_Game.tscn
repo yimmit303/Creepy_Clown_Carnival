@@ -1,9 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Minigames/Balloon Game/BalloonSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Balloon Game/DartThrower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Minigames/Balloon Game/balloon-bg-v1.png" type="Texture" id=3]
 [ext_resource path="res://Minigames/Balloon Game/Balloon_Game.gd" type="Script" id=4]
+[ext_resource path="res://Minigames/Balloon Game/DartCounter.gd" type="Script" id=5]
+[ext_resource path="res://Minigames/Balloon Game/Sounds/Balloon Pop.wav" type="AudioStream" id=6]
+[ext_resource path="res://Minigames/Balloon Game/Sprites/balloon-dart.png" type="Texture" id=7]
+[ext_resource path="res://Minigames/Balloon Game/Sprites/balloon-evilclown.png" type="Texture" id=8]
+[ext_resource path="res://Minigames/Balloon Game/Clown.gd" type="Script" id=9]
+[ext_resource path="res://Minigames/Balloon Game/Sounds/Clown_Laugh.wav" type="AudioStream" id=10]
+[ext_resource path="res://Minigames/Balloon Game/ClownWorld.gd" type="Script" id=11]
+[ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Minigames/Balloon Game/Timer.gd" type="Script" id=14]
+[ext_resource path="res://Minigames/shlop/shlop rg.ttf" type="DynamicFontData" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 884.877, 36.271 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 54.1964, 503.253 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 15 )
 
 [node name="BalloonGame" type="Node2D"]
 pause_mode = 1
@@ -16,4 +37,114 @@ texture = ExtResource( 3 )
 [node name="BalloonSpawner" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
+[node name="Pop" type="AudioStreamPlayer" parent="BalloonSpawner"]
+stream = ExtResource( 6 )
+
 [node name="DartThrower" parent="." instance=ExtResource( 2 )]
+
+[node name="DartCounter" type="Node2D" parent="."]
+position = Vector2( 313.061, 842.565 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 5 )
+
+[node name="Dart1" type="Sprite" parent="DartCounter"]
+texture = ExtResource( 7 )
+
+[node name="Dart2" type="Sprite" parent="DartCounter"]
+texture = ExtResource( 7 )
+
+[node name="Dart3" type="Sprite" parent="DartCounter"]
+texture = ExtResource( 7 )
+
+[node name="Dart4" type="Sprite" parent="DartCounter"]
+texture = ExtResource( 7 )
+
+[node name="Dart5" type="Sprite" parent="DartCounter"]
+texture = ExtResource( 7 )
+
+[node name="BorderTop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderTop"]
+position = Vector2( 973.439, 125.906 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BorderTop"]
+position = Vector2( 933.006, 952.801 )
+shape = SubResource( 1 )
+
+[node name="BorderSide" type="Area2D" parent="."]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="BorderSide"]
+position = Vector2( 183.792, 504.43 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="BorderSide"]
+position = Vector2( 1743.03, 529.402 )
+shape = SubResource( 2 )
+
+[node name="ClownWorld" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+script = ExtResource( 11 )
+
+[node name="SpoopClown2" type="Sprite" parent="ClownWorld"]
+position = Vector2( 980.045, 281.639 )
+scale = Vector2( 2.74189, 2.74189 )
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="SpoopClown3" type="Sprite" parent="ClownWorld"]
+position = Vector2( 1727.09, 594.223 )
+scale = Vector2( 6.31355, 3.24202 )
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="SpoopClown" type="Sprite" parent="ClownWorld"]
+position = Vector2( 619.468, 472.979 )
+scale = Vector2( 4.44436, 4.44436 )
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="SpoopClown4" type="Sprite" parent="ClownWorld"]
+position = Vector2( 1289.47, 452.771 )
+scale = Vector2( 1.61027, 4.44436 )
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="SpoopClown5" type="Sprite" parent="ClownWorld"]
+position = Vector2( 1077.92, 738.833 )
+scale = Vector2( 4.06042, 0.892906 )
+texture = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="Laugh" type="AudioStreamPlayer" parent="ClownWorld"]
+stream = ExtResource( 10 )
+
+[node name="Tween" type="Tween" parent="ClownWorld"]
+
+[node name="LoseScreen" parent="." instance=ExtResource( 12 )]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 956.463, 519.861 )
+
+[node name="WinScreen" parent="." instance=ExtResource( 13 )]
+position = Vector2( 956.902, 518.05 )
+
+[node name="Timer" type="Node2D" parent="."]
+position = Vector2( 271.139, 193.444 )
+script = ExtResource( 14 )
+
+[node name="TimeLeft" type="Label" parent="Timer"]
+margin_left = 2.37842
+margin_right = 42.3784
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 3 )
+text = "30"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="bad_balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_bad_balloon_popped"]
+[connection signal="bad_balloon_popped" from="DartThrower" to="ClownWorld" method="_on_DartThrower_bad_balloon_popped"]
+[connection signal="balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_balloon_popped"]
+[connection signal="balloon_popped" from="DartThrower" to="." method="_on_balloon_popped"]
+[connection signal="dart_thrown" from="DartThrower" to="DartCounter" method="_on_dart_thrown"]
+[connection signal="game_lost" from="DartCounter" to="." method="_on_game_lost"]
