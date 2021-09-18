@@ -8,8 +8,11 @@ func _ready():
 	pass # Replace with function body.
 
 func setPoints(_start, _end):
+	self.clear()
 	start = _start
 	end = _end
+	
+	print("DEBUG: ", _start, "->", _end)
 	
 func _process(delta):
 	if(start != null and end != null):

@@ -17,6 +17,8 @@ var camera_pos
 
 var MOUSE_SENSITIVITY = 0.05
 
+var interact = false
+
 func _ready():
 	camera = $Pivot/CameraPivot/Camera
 	rotation_helper = $Pivot
@@ -27,7 +29,7 @@ func _ready():
 func _physics_process(delta):
 	process_input(delta)
 	process_movement(delta)
-
+	
 func process_input(delta):
 	# ----------------------------------
 	# Walking
@@ -68,8 +70,14 @@ func process_input(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
 	
+	#-----------------------------------
+	if Input.is_action_just_pressed("select"):
+		interact = true
+		
+	if Input.is_action_just_released("select"):
+		interact = false
+	#-----------------------------------
 	
-
 func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
@@ -92,6 +100,11 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+	
+	#if get_slide_count() != 0 :
+		#for i in range (0, get_slide_count()):
+			#print(get_slide_collision(i))
+			#print(get_slide_collision(i).collider.name)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
