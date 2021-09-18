@@ -3,7 +3,7 @@
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball Game.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball_Spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball_Ramp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Minigames/Skeeball Game/Power_Meter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Minigames/Skeeball Game/ProgressBar.gd" type="Script" id=4]
 
 [node name="Skeeball Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,8 +11,20 @@ script = ExtResource( 1 )
 [node name="Skeeball_Ramp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 946.288, 487.72 )
 
-[node name="Power_Meter" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1167.16, 734.382 )
-
 [node name="Skeeball_Spawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 945.167, 808.381 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 1110.72
+margin_top = 581.322
+margin_right = 1114.72
+margin_bottom = 595.322
+rect_scale = Vector2( 5, 15 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="charging" from="Skeeball_Spawner" to="ProgressBar" method="_on_Skeeball_Spawner_charging"]
+[connection signal="not_charging" from="Skeeball_Spawner" to="ProgressBar" method="_on_Skeeball_Spawner_not_charging"]
+[connection signal="shoot" from="ProgressBar" to="Skeeball_Spawner" method="_on_ProgressBar_shoot"]
