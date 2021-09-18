@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Knife_Game.ogg-1b41cc58db0e16e6a8fc96c903e5de0a.oggstr"
+
+[deps]
+
+source_file="res://Minigames/Knife Game/Sounds/Knife_Game.ogg"
+dest_files=[ "res://.import/Knife_Game.ogg-1b41cc58db0e16e6a8fc96c903e5de0a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
