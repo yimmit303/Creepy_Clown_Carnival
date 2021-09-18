@@ -1,32 +1,65 @@
 extends Node2D
 
-var held
 export var health = 3
 export var shakeTime = 2
-export var velocityNeeded = 4
+export var maxSpeed = 1200
 
 var lastHeld = 0
 var time = 0
 
 var rigidBody
-var click = false
+var ontopOf = false
+var grabbed = false
 
 func _ready():
-	held = false
 	rigidBody = $RigidBody2D
 
 func startHolding():
 	lastHeld = time
+	grabbed = true
+	#print("grabbed")
 
 func _process(delta):
 	time += delta
-	if(held and time - lastHeld >= shakeTime and rigidBody.linear_velocity.length > velocityNeeded):
-		pass
+	
+	if(grabbed):
+		var d = get_global_mouse_position()-global_position
+		#print(d.length())
+		var v = (d).normalized() * maxSpeed * delta * d.length()/125
+		if(d.length() >= 5):
+			position += v
+		#print(v)
+		
+		if(time - lastHeld >= shakeTime):
+			lastHeld = time
+			health -= 1
+			if(health == 2):
+				$RigidBody2D/Edges.visible = false
+			elif(health == 1):
+				$RigidBody2D/Center.visible = false
+			elif(health == 0):
+				$RigidBody2D/Center.visible = false
+			else:
+				#destroy self
+				#spawn coin
+				queue_free()
+				pass
 
 func _on_RigidBody2D_mouse_entered():
-	if Input.is_action_pressed("click"):
-		print("yo")
+	ontopOf = true
 	pass # Replace with function body.
 
 func _on_RigidBody2D_mouse_exited():
+	ontopOf = false
+	pass # Replace with function body.
+
+func _on_Node2D_leftClickedSignal():
+	if(ontopOf):
+		startHolding()
+	pass # Replace with function body.
+
+func _on_Node2D_leftUnclickedSignal():
+	if(grabbed):
+		grabbed = false
+		#print("let go")
 	pass # Replace with function body.
