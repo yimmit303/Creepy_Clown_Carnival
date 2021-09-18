@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Minigames/Balloon Game/BalloonSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Balloon Game/DartThrower.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Minigames/Balloon Game/Timer.gd" type="Script" id=14]
 [ext_resource path="res://Minigames/shlop/shlop rg.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Minigames/Balloon Game/Sounds/Balloon.ogg" type="AudioStream" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 884.877, 36.271 )
@@ -141,6 +142,9 @@ text = "30"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
 
 [connection signal="bad_balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_bad_balloon_popped"]
 [connection signal="bad_balloon_popped" from="DartThrower" to="ClownWorld" method="_on_DartThrower_bad_balloon_popped"]

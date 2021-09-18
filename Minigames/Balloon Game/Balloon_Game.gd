@@ -11,11 +11,13 @@ func make_active():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$DartThrower.can_throw = true
 	$Timer.counting = true
+	$Music.play()
 
 func make_inactive():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$DartThrower.can_throw = false
 	$Timer.counting = false
+	$Music.stop()
 
 func _on_game_won():
 	make_inactive()
