@@ -3,16 +3,16 @@ extends Node2D
 var active = false
 var num_popped = 0
 
+func _ready():
+	make_active()
+
 func make_active():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	$BalloonSpawner.spawn_balloons()
-	$DartThrower.can_throw = true
+#	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Timer.counting = true
 	$Music.play()
 
 func make_inactive():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	$DartThrower.can_throw = false
 	$Timer.counting = false
 	$Music.stop()
 
@@ -23,11 +23,10 @@ func _on_game_won():
 	yield($WinScreen, "done_playing")
 
 func _on_game_lost():
-	if num_popped < 3: # This stops the win and loss from happening at the same time
-		make_inactive()
-		$BalloonSpawner.pop_all()
-		$LoseScreen.play()
-		yield($LoseScreen, "done_playing")
+	make_inactive()
+	$BalloonSpawner.pop_all()
+	$LoseScreen.play()
+	yield($LoseScreen, "done_playing")
 
 func _on_balloon_popped():
 	num_popped += 1

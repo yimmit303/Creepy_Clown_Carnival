@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Minigames/Pumpkin Game/PumpkinGame.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/Barrel.png" type="Texture" id=2]
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/Rod.png" type="Texture" id=3]
-[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Hook.png" type="Texture" id=4]
+[ext_resource path="res://Minigames/Pumpkin Game/Hook.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/Pumpkin.png" type="Texture" id=5]
+[ext_resource path="res://Minigames/Balloon Game/Sounds/Balloon.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Minigames/Timer.tscn" type="PackedScene" id=7]
 
 [node name="PumpkinGame" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,10 +32,9 @@ position = Vector2( 1306.75, 388.885 )
 scale = Vector2( 28.3253, 14.3316 )
 texture = ExtResource( 3 )
 
-[node name="Hook" type="Sprite" parent="."]
-position = Vector2( 1005.51, 305.187 )
-scale = Vector2( 5.4365, 4.95091 )
-texture = ExtResource( 4 )
+[node name="Hook" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1007.87, 337.714 )
+scale = Vector2( 4.97747, 4.68285 )
 
 [node name="Pumpkin" type="Sprite" parent="."]
 position = Vector2( 750.533, 703.545 )
@@ -60,3 +61,11 @@ texture = ExtResource( 5 )
 position = Vector2( 1014.69, 677.059 )
 scale = Vector2( 3.75902, 4.31082 )
 texture = ExtResource( 5 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Timer" parent="." instance=ExtResource( 7 )]
+time_left = 60
+
+[connection signal="time_out" from="Timer" to="." method="_on_game_lost"]
