@@ -99,6 +99,8 @@ func _physics_process(delta):
 				print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
 				#$HandCollider/PlayerHandCollisionShape.transform = stupidHandMovesWhenItShouldnt
 				$HandCollider/PlayerHandCollisionShape.set_global_transform(stupidHandMovesWhenItShouldnt)
+				$HandCollider.angular_velocity = Vector3.ZERO
+				$HandCollider.linear_velocity = Vector3.ZERO
 				print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
 
 func check_camera_progress():

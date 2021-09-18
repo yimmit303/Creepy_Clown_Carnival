@@ -16,7 +16,9 @@ func _ready():
 	set_max_contacts_reported(5)
 	
 func _process(delta):
-	if(ready_to_play and player.interact and !player.in_minigame):
+	if(player.in_minigame):
+		return
+	if(ready_to_play and player.interact):
 		#print("start game!")
 		
 		#ready_to_play and currentMachine are set via arcade machine
