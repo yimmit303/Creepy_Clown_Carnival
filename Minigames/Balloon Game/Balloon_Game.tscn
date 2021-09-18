@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Minigames/Balloon Game/BalloonSpawner.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Balloon Game/DartThrower.tscn" type="PackedScene" id=2]
@@ -13,8 +13,7 @@
 [ext_resource path="res://Minigames/Balloon Game/ClownWorld.gd" type="Script" id=11]
 [ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Minigames/Balloon Game/Timer.gd" type="Script" id=14]
-[ext_resource path="res://Minigames/shlop/shlop rg.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Minigames/Timer.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Minigames/Balloon Game/Sounds/Balloon.ogg" type="AudioStream" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -22,10 +21,6 @@ extents = Vector2( 884.877, 36.271 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 54.1964, 503.253 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 64
-font_data = ExtResource( 15 )
 
 [node name="BalloonGame" type="Node2D"]
 pause_mode = 1
@@ -128,19 +123,7 @@ position = Vector2( 956.463, 519.861 )
 [node name="WinScreen" parent="." instance=ExtResource( 13 )]
 position = Vector2( 956.902, 518.05 )
 
-[node name="Timer" type="Node2D" parent="."]
-position = Vector2( 271.139, 193.444 )
-script = ExtResource( 14 )
-
-[node name="TimeLeft" type="Label" parent="Timer"]
-margin_left = 2.37842
-margin_right = 42.3784
-margin_bottom = 14.0
-custom_fonts/font = SubResource( 3 )
-text = "30"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Timer" parent="." instance=ExtResource( 14 )]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
@@ -151,4 +134,3 @@ stream = ExtResource( 16 )
 [connection signal="balloon_popped" from="DartThrower" to="." method="_on_balloon_popped"]
 [connection signal="dart_thrown" from="DartThrower" to="DartCounter" method="_on_dart_thrown"]
 [connection signal="game_lost" from="DartCounter" to="." method="_on_game_lost"]
-[connection signal="time_out" from="Timer" to="." method="_on_game_lost"]
