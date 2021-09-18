@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Minigames/Knife Game/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Minigames/Knife Game/Knife_Spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Minigames/Knife Game/Knife_Game.gd" type="Script" id=3]
+[ext_resource path="res://Minigames/Knife Game/Scoreboard.gd" type="Script" id=4]
+[ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=6]
 
 [node name="Knife_Game" type="Node2D"]
 script = ExtResource( 3 )
@@ -12,3 +15,20 @@ position = Vector2( 1570.98, 817.15 )
 
 [node name="Knife_Spawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 281.93, 822.705 )
+
+[node name="Scoreboard" type="RichTextLabel" parent="."]
+margin_left = 126.0
+margin_top = 121.0
+margin_right = 283.0
+margin_bottom = 181.0
+rect_scale = Vector2( 1, 1.01354 )
+text = "Lives:
+Score:"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoseScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="WinScreen" parent="." instance=ExtResource( 6 )]
