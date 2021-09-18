@@ -1,14 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Main_Level/Player.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=6]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 10, 2, 5 )
 
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.521569, 0.639216, 0.941176, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="CapsuleShape" id=5]
+
 [node name="Root" type="Spatial"]
 
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( -4.97472, 0, 0, 0, -0.269253, 0, 0, 0, -4.97472, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 5.19899, 0, 0, 0, 1.35719, 0, 0, 0, 2.49157, 0, 0, 0 )
+shape = SubResource( 6 )
+
 [node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -4.97472, 0, 0, 0, -0.269253, 0, 0, 0, -4.97472, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.685793, 0.727797, 0, -0.727797, 0.685793, 0, 3.09128, 0 )
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.71162, 0, 0, 0, 1, 0, 5.30208, 0 )
+script = ExtResource( 1 )
+
+[node name="Pivot" type="Spatial" parent="Player"]
+
+[node name="Skin" type="MeshInstance" parent="Player/Pivot"]
+transform = Transform( 0.993398, 0, 0, 0, -4.34228e-08, -0.993398, 0, 0.993398, -4.34228e-08, -4.76837e-07, 0, -4.76837e-07 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Skin2" type="MeshInstance" parent="Player/Pivot"]
+transform = Transform( -4.34228e-08, 0, 0.213469, 0, 0.142163, 0, -0.993398, 0, -9.33101e-09, -0.0166836, 0.756, -1.56324 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="Player/Pivot"]
+transform = Transform( 1, -0.000146224, 0.000169338, 8.98894e-05, 0.583624, -0.0268675, -0.000162435, 0.0459869, 0.998942, 0, 1.32771, 0 )
 current = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1.46734, 0, 0, 0, 0.761072, 0, 4.76837e-07, 0 )
+shape = SubResource( 5 )
