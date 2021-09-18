@@ -41,7 +41,7 @@ func swapCamera(currentMachine):
 		#print("cinematic_camera.current: ", cinematic_camera.current, " :: main_camera.current: ", main_camera.current)
 		cinematic_camera.transform.origin -= - 2*Vector3.UP #puts camera behind and above player slightly (looks cooler)
 		
-		cinematic_camera.set_target_path(currentMachine.screen.get_path())
+		cinematic_camera.set_target_path(currentMachine.cameraZoom.get_path())
 		cinematic_camera.enabled = true
 		cinematic_camera_ready = false
 		

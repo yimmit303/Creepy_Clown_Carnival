@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Minigames/Skeeball Game/Skeeball Game.gd" type="Script" id=1]
+[ext_resource path="res://Minigames/Skeeball Game/Skeeball_Spawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Minigames/Skeeball Game/Skeeball_Ramp.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Minigames/Skeeball Game/Power_Meter.tscn" type="PackedScene" id=4]
+
+[node name="Skeeball Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Skeeball_Ramp" parent="." instance=ExtResource( 3 )]
+position = Vector2( 946.288, 487.72 )
+
+[node name="Power_Meter" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1167.16, 734.382 )
+
+[node name="Skeeball_Spawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( 945.167, 808.381 )
