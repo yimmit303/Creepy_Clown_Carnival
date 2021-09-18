@@ -4,8 +4,7 @@ var Balloon = load("Minigames/Balloon Game/Balloon.tscn")
 
 var num_clowns = 3
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func spawn_balloons():
 	for x in range(5):
 		for y in range(3):
 			var new_balloon = Balloon.instance()

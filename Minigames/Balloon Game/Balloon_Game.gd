@@ -3,12 +3,9 @@ extends Node2D
 var active = false
 var num_popped = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	make_active()
-
 func make_active():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$BalloonSpawner.spawn_balloons()
 	$DartThrower.can_throw = true
 	$Timer.counting = true
 	$Music.play()
