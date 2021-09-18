@@ -1,27 +1,38 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Minigames/Balloon Game/BalloonSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Minigames/Balloon Game/DartThrower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Minigames/Balloon Game/balloon-bg-v1.png" type="Texture" id=3]
 
 [node name="Spatial" type="Node2D"]
 
+[node name="balloon-bg-v1" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 3 )
+
 [node name="BG" type="ColorRect" parent="."]
-margin_left = 200.0
-margin_top = 100.0
-margin_right = 1720.0
-margin_bottom = 980.0
-color = Color( 0.258824, 0.176471, 0.0901961, 1 )
+visible = false
+margin_left = 160.0
+margin_top = 90.0
+margin_right = 1760.0
+margin_bottom = 990.0
+color = Color( 0.870588, 0.219608, 0.101961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 617.942
-margin_top = 196.058
-margin_right = 695.942
-margin_bottom = 272.058
+[node name="BG2" type="ColorRect" parent="."]
+visible = false
+margin_left = 210.0
+margin_top = 140.0
+margin_right = 1710.0
+margin_bottom = 940.0
+color = Color( 0.258824, 0.176471, 0.0901961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BalloonSpawner" type="Node2D" parent="."]
 script = ExtResource( 1 )
+
+[node name="DartThrower" parent="." instance=ExtResource( 2 )]
