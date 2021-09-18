@@ -30,13 +30,17 @@ func on_player_leave(body):
 	print("arcade no longer touching ", body.name)
 	if(body.name == player.name):
 		print("not touching player.")
+		hand.currentMachine = null
 	if(body.name == hand.name):
 		print("not hand on machine.")
 		hand.ready_to_play = false
+		hand.currentMachine = null
 
 func on_player_interact(body):
 	print("arcade machine touched: ", body.name)
 	if(body.name == player.name):
 		print("touched player!!!")
+		hand.currentMachine = self
 	if(body.name == hand.name):
 		print("hand on machine!!!")
+		hand.currentMachine = self

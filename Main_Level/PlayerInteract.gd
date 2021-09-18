@@ -2,6 +2,7 @@ extends RigidBody
 
 var player 
 var ready_to_play = false
+var currentMachine #is set by arcade machine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,9 +23,12 @@ func on_player_interact(body):
 	print("player hand touched ", body.name)
 	ready_to_play = true
 	
+	
 func _process(delta):
 	if(ready_to_play and player.interact):
 		print("start game!")
+		
+		player.swapCamera(currentMachine)
 		
 		#start game here or something
 		

@@ -19,10 +19,30 @@ var MOUSE_SENSITIVITY = 0.05
 
 var interact = false
 
+var main_camera
+var cinematic_camera
+
+func swapCamera(currentMachine):
+	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
+	cinematic_camera.transform = main_camera.transform
+	cinematic_camera.current = true
+	main_camera.current = false
+	
+	#print("cinematic_camera.current: ", cinematic_camera.current, " :: main_camera.current: ", main_camera.current)
+	
+	cinematic_camera.transform.origin += Vector3.FORWARD
+	
+	#find out how to move camera
+	
+	cinematic_camera
+
 func _ready():
 	camera = $Pivot/CameraPivot/Camera
 	rotation_helper = $Pivot
 	camera_pos = $Pivot/CameraPivot
+	
+	main_camera = $Pivot/CameraPivot/Camera
+	cinematic_camera = $Pivot/CameraPivot/InterpolatedCamera
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -30,7 +50,7 @@ func _physics_process(delta):
 	process_input(delta)
 	process_movement(delta)
 	
-func process_input(delta):
+func process_input(_delta):
 	# ----------------------------------
 	# Walking
 	dir = Vector3()
