@@ -1,9 +1,5 @@
-extends Viewport
-
-var rootViewport
-var sprite
+extends ViewportContainer
 
 func _ready():
-	#var rootViewport = get_node("/root")
-	rootViewport = get_tree().get_root()
-	sprite = $PostProcessingSprite
+	pass
+	#control.Material.set_shader_param("ViewportTexture", get_texture())

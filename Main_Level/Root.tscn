@@ -1,15 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Main_Level/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Main_Level/Scripts/DebugDraw.gd" type="Script" id=2]
 [ext_resource path="res://Main_Level/Scripts/ViewportOutline.gd" type="Script" id=3]
 [ext_resource path="res://Main_Level/Scripts/MinigameInteract.gd" type="Script" id=4]
 [ext_resource path="res://Main_Level/Scripts/PlayerHandInteract.gd" type="Script" id=5]
-
-[sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="CubeMesh" id=2]
+[ext_resource path="res://Main_Level/Materials/PostProcessing.tres" type="Material" id=6]
 
 [sub_resource type="CapsuleMesh" id=3]
 
@@ -40,22 +36,6 @@ albedo_color = Color( 0.431373, 0.396078, 0.396078, 1 )
 albedo_color = Color( 0.94902, 0.498039, 0.933333, 1 )
 
 [node name="Root" type="Spatial"]
-
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1920, 1080 )
-transparent_bg = true
-script = ExtResource( 3 )
-
-[node name="PostProcessingSprite" type="Sprite" parent="Viewport"]
-texture = SubResource( 1 )
-
-[node name="PostProcessing" type="Camera" parent="Viewport"]
-transform = Transform( -0.36092, -0.425529, -0.829856, 0.92518, -0.051373, -0.376036, 0.117382, -0.903485, 0.412233, -21.5099, 7.11115, 0 )
-
-[node name="Example" type="MeshInstance" parent="Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2497, 7.30928, 0 )
-mesh = SubResource( 2 )
-material/0 = null
 
 [node name="Debug" type="Spatial" parent="."]
 
@@ -141,3 +121,19 @@ material/0 = SubResource( 14 )
 
 [node name="CameraSnapLocation" type="Spatial" parent="ArcadeMachine/ArcadeRigidBody/ArcadeScreen"]
 transform = Transform( -7.97445e-08, 0, -8.13785, 0, 3.36933, 0, 1.82434, 0, -3.55717e-07, -10, 0, 0 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+visible = false
+material = ExtResource( 6 )
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 0
