@@ -1,36 +1,58 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Main_Level/Player.gd" type="Script" id=1]
 [ext_resource path="res://Main_Level/DebugDraw.gd" type="Script" id=2]
 [ext_resource path="res://Main_Level/ArcadeMachine.gd" type="Script" id=3]
+[ext_resource path="res://Main_Level/PlayerInteract.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.521569, 0.639216, 0.941176, 1 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CapsuleShape" id=3]
 
-[sub_resource type="CapsuleShape" id=4]
+[sub_resource type="BoxShape" id=4]
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="CubeMesh" id=5]
 
-[sub_resource type="CubeMesh" id=6]
-size = Vector3( 10, 2, 5 )
+[sub_resource type="BoxShape" id=6]
 
 [sub_resource type="CubeMesh" id=7]
+size = Vector3( 10, 2, 5 )
 
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.431373, 0.396078, 0.396078, 1 )
+[sub_resource type="BoxShape" id=8]
 
 [sub_resource type="CubeMesh" id=9]
 
+[sub_resource type="SpatialMaterial" id=13]
+flags_unshaded = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.05
+
 [sub_resource type="SpatialMaterial" id=10]
+next_pass = SubResource( 13 )
+albedo_color = Color( 0.431373, 0.396078, 0.396078, 1 )
+
+[sub_resource type="CubeMesh" id=11]
+
+[sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0.94902, 0.498039, 0.933333, 1 )
 
-[sub_resource type="BoxShape" id=11]
-
 [node name="Root" type="Spatial"]
+
+[node name="Debug" type="Spatial" parent="."]
+
+[node name="DebugDraw" type="ImmediateGeometry" parent="Debug"]
+transform = Transform( 1, 0, 0, 0, 1.71162, 0, 0, 0, 1, -7.62939e-06, 5.30209, 0 )
+script = ExtResource( 2 )
+
+[node name="DebugCamera" type="Camera" parent="Debug"]
+transform = Transform( 0.105283, 0.60646, -0.788113, -0.0803027, 0.795114, 0.60112, 0.991195, -7.51673e-09, 0.132412, -10.3677, 14.2243, 0 )
+
+[node name="CinematicCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( 1, -0.000141038, 0.000174348, 0.000148906, 0.998942, -0.0459834, -0.000167678, 0.0459834, 0.998942, 0, 7.57511, 0 )
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.71162, 0, 0, 0, 1, 0, 5.30208, 0 )
@@ -38,14 +60,9 @@ script = ExtResource( 1 )
 
 [node name="Pivot" type="Spatial" parent="Player"]
 
-[node name="Skin" type="MeshInstance" parent="Player/Pivot"]
+[node name="PlayerBody" type="MeshInstance" parent="Player/Pivot"]
 transform = Transform( 0.993398, 0, 0, 0, -4.34228e-08, -0.993398, 0, 0.993398, -4.34228e-08, -4.76837e-07, 0, -4.76837e-07 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
-
-[node name="Skin2" type="MeshInstance" parent="Player/Pivot"]
-transform = Transform( -4.34228e-08, 0, 0.213469, 0, 0.142163, 0, -0.993398, 0, -9.33101e-09, -0.0166836, 0.756, -1.56324 )
-mesh = SubResource( 3 )
 material/0 = SubResource( 2 )
 
 [node name="CameraPivot" type="Spatial" parent="Player/Pivot"]
@@ -55,49 +72,59 @@ transform = Transform( 1, -7.35576e-05, 0.000173994, 8.69969e-05, 0.996911, -0.0
 transform = Transform( 1, 0, 0, 0, 0.585433, 0, 0, 0, 0.999303, 0, -0.000293732, 0 )
 current = true
 
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="Player/Pivot/CameraPivot"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
+[node name="PlayerCollider" type="CollisionShape" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1.46734, 0, 0, 0, 0.761072, 0, 4.76837e-07, 0 )
+shape = SubResource( 3 )
+
+[node name="HandCollider" type="RigidBody" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.718191, 0, 0 )
+mass = 0.00102041
+script = ExtResource( 4 )
+
+[node name="PlayerHandCollisionShape" type="CollisionShape" parent="Player/HandCollider"]
+transform = Transform( 0.224366, 0, -7.97108e-16, 0, 0.144239, 0, 0, 0, 1.09984, -0.0166836, 0.756, -2.24504 )
 shape = SubResource( 4 )
+
+[node name="PlayerHand" type="MeshInstance" parent="Player/HandCollider/PlayerHandCollisionShape"]
+transform = Transform( -1.93536e-07, 0, 0.951432, 0, 0.985607, 0, -0.90322, 0, -8.48397e-09, 0, 0, 0.0990505 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 2 )
 
 [node name="Floor" type="Spatial" parent="."]
 
-[node name="StaticBody" type="StaticBody" parent="Floor"]
+[node name="FloorStaticBody" type="StaticBody" parent="Floor"]
 transform = Transform( -4.97472, 0, 0, 0, -0.269253, 0, 0, 0, -4.97472, 0, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
+[node name="FloorCollisionShape" type="CollisionShape" parent="Floor/FloorStaticBody"]
 transform = Transform( 5.19899, 0, 0, 0, 1.35719, 0, 0, 0, 2.49157, 0, 0, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+[node name="FloorMesh" type="MeshInstance" parent="Floor"]
 transform = Transform( -4.97472, 0, 0, 0, -0.269253, 0, 0, 0, -4.97472, 0, 0, 0 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="ArcadeMachine" type="Spatial" parent="."]
 transform = Transform( 1.07131, 0, 0, 0, 2.34892, 0, 0, 0, 1.61112, 20.2124, 2.91298, 0 )
 script = ExtResource( 3 )
 
-[node name="DebugDraw" type="ImmediateGeometry" parent="ArcadeMachine"]
-transform = Transform( 0.933437, 0, 0, 0, 0.728684, 0, 0, 0, 0.620686, -18.867, 1.01711, 0 )
-script = ExtResource( 2 )
+[node name="ArcadeRigidBody" type="RigidBody" parent="ArcadeMachine"]
+mass = 10128.8
+gravity_scale = 51.14
 
-[node name="Body" type="MeshInstance" parent="ArcadeMachine"]
+[node name="ArcadeCollisionShape" type="CollisionShape" parent="ArcadeMachine/ArcadeRigidBody"]
+transform = Transform( 0.96838, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 8 )
+
+[node name="ArcadeBody" type="MeshInstance" parent="ArcadeMachine/ArcadeRigidBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0179043, -8.34465e-07, 0.0155317 )
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
-
-[node name="Screen" type="MeshInstance" parent="ArcadeMachine"]
-transform = Transform( 0.119984, 0.175405, 0, -0.0085303, 0.513213, 0, 0, 0, 0.548143, -1.13963, 0.326374, 0.146804 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 10 )
 
-[node name="RayCast" type="RayCast" parent="ArcadeMachine/Screen"]
-transform = Transform( 8.13671, -2.78095, 0, 0.135243, 1.90229, 0, 0, 0, 1.82434, -0.117844, -0.074017, -0.233628 )
+[node name="ArcadeScreen" type="MeshInstance" parent="ArcadeMachine/ArcadeRigidBody"]
+transform = Transform( 0.119984, 0.175405, 0, -0.0085303, 0.513213, 0, 0, 0, 0.548143, -1.13963, 0.326374, 0.146804 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
-[node name="RigidBody" type="RigidBody" parent="ArcadeMachine"]
-
-[node name="CollisionShape" type="CollisionShape" parent="ArcadeMachine/RigidBody"]
-transform = Transform( 0.96838, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 11 )
+[node name="CameraSnapLocation" type="Spatial" parent="ArcadeMachine/ArcadeRigidBody/ArcadeScreen"]
+transform = Transform( -7.97445e-08, 0, -8.13785, 0, 3.36933, 0, 1.82434, 0, -3.55717e-07, -10, 0, 0 )

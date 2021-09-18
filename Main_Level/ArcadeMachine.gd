@@ -1,69 +1,72 @@
 extends Spatial
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var body
+var player 
+var hand
 
-var player
-var debug_draw
-var ray
+var screen
+var normalDistanceFromScreen = 15
+var started = false
+
+func startGame():
+	#this will start the game
+	started = true
+	print("starting game now!")
+	
+	#wait
+	var t = Timer.new()
+	t.set_wait_time(3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	#done waiting
+	
+	finishGame()
+	
+func finishGame():
+	started = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#player = $Player
+	
 	player = get_node("../Player")
-	debug_draw = $DebugDraw
-	ray = $Screen/RayCast
-
+	hand = get_node("../Player/HandCollider")
+	#print(player)
+	
+	body = $ArcadeRigidBody
+	screen = $ArcadeRigidBody/ArcadeScreen/CameraSnapLocation #this must be oriented so that it faces the screen
+	
+	var physicalScreen = $ArcadeRigidBody/ArcadeScreen
+	#var forward = Vector3.ZERO
+	#forward = physicalScreen.get_global_transform().basis.y
+	#screen.transform.origin += normalDistanceFromScreen * forward
+	
+	screen.transform.origin.x = -normalDistanceFromScreen
+	
+	body.set_contact_monitor(true)
+	body.set_max_contacts_reported(5)
+	
+	body.connect("body_entered", self, "on_player_interact")
+	
+	body.connect("body_exited", self, "on_player_leave")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func _physics_process(delta):
-	
-	if Input.is_action_just_pressed("select"):
-		""""
-		#var space_state = get_world().direct_space_state
-		#cast a ray from camera position directly forward from camera
-		#var castLength = 1000
-		
-		#var cameraGlobalTransform = camera_pos.get_global_transform()
-		#raycast_now(space_state, cameraGlobalTransform.origin, cameraGlobalTransform.origin + cameraGlobalTransform.basis.z * castLength)
-		
-		#var mousePos = get_viewport().get_mouse_position()
-		#var from = camera.project_ray_origin(mousePos)
-		#var to = from + camera.project_ray_normal(mousePos) * castLength
-		
-		
-		var from = transform.origin
-		var to = player.transform.origin
-		
-		#raycast_now(space_state, from, to)
-		"""
-		ray.enabled = true
-		ray.cast_to = player.get_global_transform().origin
-		
-		ray.force_raycast_update()
-		
-		var collision = ray.get_collision_point()
-		
-		print(collision)
-		
-		if(collision == null):
-			collision = player.get_global_transform().origin
-		
-		debug_draw.setPoints(ray.get_global_transform().origin, ray.get_collision_point())
-		
-		ray.enabled = false
-		
-	
-"""	
-func raycast_now(space_state, from, to):
-	var result = space_state.intersect_ray(from, to, [self])
-	if(result == null):
-		to = result.position
-		
-	print(from, to)
-	
-	debug_draw.setPoints(from, to)
-"""
+func on_player_leave(IncomingBody):
+	#print("arcade no longer touching ", IncomingBody.name)
+	if(IncomingBody.name == player.name or IncomingBody.name == hand.name):
+		#print("not hand on machine.")
+		hand.ready_to_play = false
+		hand.currentMachine = null
+
+func on_player_interact(IncomingBody):
+	#print("arcade machine touched: ", IncomingBody.name)
+	if(IncomingBody.name == player.name or IncomingBody.name == hand.name):
+		#print("touched player!!!")
+		hand.currentMachine = self
+		hand.ready_to_play = true

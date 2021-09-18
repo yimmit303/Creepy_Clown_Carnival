@@ -6,7 +6,7 @@
 [node name="Knife_Game" type="Node2D"]
 
 [node name="Wheel" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1570.72, 817.415 )
+position = Vector2( 1570.98, 817.15 )
 
 [node name="Knife_Spawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 281.93, 822.705 )

@@ -17,18 +17,102 @@ var camera_pos
 
 var MOUSE_SENSITIVITY = 0.05
 
+var interact = false
+
+var main_camera
+var cinematic_camera
+
+var in_minigame = false
+var cinematic_camera_ready = false
+var current_minigame = null
+
+var debugCamera
+var stupidHandMovesWhenItShouldnt
+
+func swapCamera(currentMachine):
+	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
+	stupidHandMovesWhenItShouldnt = $HandCollider/PlayerHandCollisionShape.get_global_transform()
+	print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
+	
+	
+	if(!in_minigame):
+		in_minigame = true
+		cinematic_camera.transform = main_camera.get_global_transform()
+		cinematic_camera.current = true
+		main_camera.current = false
+		
+		#print("cinematic_camera.current: ", cinematic_camera.current, " :: main_camera.current: ", main_camera.current)
+		cinematic_camera.transform.origin -= - 2*Vector3.UP #puts camera behind and above player slightly (looks cooler)
+		
+		cinematic_camera.set_target_path(currentMachine.screen.get_path())
+		cinematic_camera.enabled = true
+		cinematic_camera_ready = false
+		
+		current_minigame = currentMachine
+
+func swapBack():
+	#cinematic_camera.transform = main_camera.get_global_transform()
+	cinematic_camera.current = true
+	main_camera.current = false
+	
+	#print("cinematic_camera.current: ", cinematic_camera.current, " :: main_camera.current: ", main_camera.current)
+	cinematic_camera.transform.origin -= - 2*Vector3.UP #puts camera behind and above player slightly (looks cooler)
+	
+	cinematic_camera.set_target_path(main_camera.get_path())
+	cinematic_camera.enabled = true
+	cinematic_camera_ready = false
+	
+	current_minigame = null
+	
+
 func _ready():
 	camera = $Pivot/CameraPivot/Camera
 	rotation_helper = $Pivot
 	camera_pos = $Pivot/CameraPivot
-
+	
+	main_camera = $Pivot/CameraPivot/Camera
+	#cinematic_camera = $Pivot/CameraPivot/InterpolatedCamera
+	cinematic_camera = get_node("../CinematicCamera")
+	debugCamera = get_node("../Debug/DebugCamera")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	process_input(delta)
-	process_movement(delta)
+	if(!in_minigame):
+		process_movement(delta)
+	else:
+		if(!cinematic_camera_ready):
+			check_camera_progress()
+		else:
+			#start minigame here!
+			if(current_minigame and current_minigame.started == false):
+				self.visible = false
+				current_minigame.startGame()
+			else:
+				self.visible = true
+				in_minigame = false
+				
+				main_camera.current = true
+				debugCamera.current = false
+				cinematic_camera.current = false
+				
+				print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
+				#$HandCollider/PlayerHandCollisionShape.transform = stupidHandMovesWhenItShouldnt
+				$HandCollider/PlayerHandCollisionShape.set_global_transform(stupidHandMovesWhenItShouldnt)
+				$HandCollider.angular_velocity = Vector3.ZERO
+				$HandCollider.linear_velocity = Vector3.ZERO
+				print($HandCollider/PlayerHandCollisionShape.get_global_transform().origin)
 
-func process_input(delta):
+func check_camera_progress():
+	var location = cinematic_camera.get_global_transform().origin
+	var destination = get_node(cinematic_camera.get_target_path()).get_global_transform().origin
+	var diff = location - destination
+	
+	if(diff.length() < 0.01):
+		cinematic_camera.enabled = false
+		cinematic_camera_ready = true
+
+func process_input(_delta):
 	# ----------------------------------
 	# Walking
 	dir = Vector3()
@@ -68,8 +152,14 @@ func process_input(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
 	
+	#-----------------------------------
+	if Input.is_action_just_pressed("select"):
+		interact = true
+		
+	if Input.is_action_just_released("select"):
+		interact = false
+	#-----------------------------------
 	
-
 func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
@@ -92,6 +182,11 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+	
+	#if get_slide_count() != 0 :
+		#for i in range (0, get_slide_count()):
+			#print(get_slide_collision(i))
+			#print(get_slide_collision(i).collider.name)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
