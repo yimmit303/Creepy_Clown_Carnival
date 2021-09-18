@@ -146,10 +146,10 @@ __meta__ = {
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 
-[connection signal="bad_balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_bad_balloon_popped"]
 [connection signal="bad_balloon_popped" from="DartThrower" to="ClownWorld" method="_on_DartThrower_bad_balloon_popped"]
-[connection signal="balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_balloon_popped"]
+[connection signal="bad_balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_bad_balloon_popped"]
 [connection signal="balloon_popped" from="DartThrower" to="." method="_on_balloon_popped"]
+[connection signal="balloon_popped" from="DartThrower" to="BalloonSpawner" method="_on_balloon_popped"]
 [connection signal="dart_thrown" from="DartThrower" to="DartCounter" method="_on_dart_thrown"]
 [connection signal="game_lost" from="DartCounter" to="." method="_on_game_lost"]
 [connection signal="time_out" from="Timer" to="." method="_on_game_lost"]
