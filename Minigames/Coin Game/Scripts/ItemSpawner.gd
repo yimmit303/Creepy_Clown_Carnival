@@ -12,10 +12,12 @@ var aliveObjects = []
 
 var coinPrefab
 var evilHandPrefab
+var dustBunnyPrefab
 var rng = RandomNumberGenerator.new()
 var my_random_number
 
-export var coinSpawnChance = 0.85
+export var coinSpawnChance = 90
+export var dustSpawnChance = 55
 
 signal spanwedCoin
 
@@ -26,7 +28,12 @@ func _ready():
 	
 	coinPrefab = load("res://Minigames/Coin Game/Prefabs/Coin.tscn")
 	evilHandPrefab = load("res://Minigames/Coin Game/Prefabs/Evilhand2.tscn")
-
+	dustBunnyPrefab = load("res://Minigames/Coin Game/Prefabs/DustBunny.tscn")
+	
+	var temp = dustSpawnChance
+	dustSpawnChance = 100
+	_on_Evilhand2_deadHand(1)
+	dustSpawnChance = temp
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -52,20 +59,13 @@ func _on_DustBunny_Spawnable_spawnCoin(rigidBody):
 		
 		emit_signal("spanwedCoin", newCoin)
 		
-func _on_Evilhand2_deadHand():
+func _on_Evilhand2_deadHand(num = 2):
 	#spawn 2 more evil hands!
 	
-	for j in range(0, 2):
+	for j in range(0, num):
 		var newHand = evilHandPrefab.instance()
-		newHand.set_name("heilHydra")
+		newHand.set_name("heilHydra" + str(j))
 		add_child(newHand)
-		
-		rng.randomize()
-		#153,21 -> 1733, 787
-		var x = rng.randf_range(153, 1733)
-		var y = rng.randf_range(21, 787)
-		newHand.kinematicBody.position.x = x
-		newHand.kinematicBody.position.y = y
 		
 		for i in range(0, aliveObjects.size()):
 			var child = aliveObjects[i]
@@ -74,4 +74,12 @@ func _on_Evilhand2_deadHand():
 				break
 		
 		aliveObjects.append(newHand)
+		
+		my_random_number = rng.randf_range(0, 100)
+		if(my_random_number >= dustSpawnChance):
+			var newDust = dustBunnyPrefab.instance()
+			newDust.set_name("dust" + str(j))
+			add_child(newDust)
+			aliveObjects.append(newDust)
+		
 	

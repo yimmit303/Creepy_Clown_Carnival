@@ -6,7 +6,7 @@
 [ext_resource path="res://Minigames/Coin Game/Prefabs/DustBunny.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Minigames/Coin Game/Scripts/ItemSpawner.gd" type="Script" id=8]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32.0167, 54.2283 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -53,7 +53,7 @@ texture = ExtResource( 2 )
 "Player",
 ]]
 position = Vector2( 25, 50 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Evilhand2" parent="." instance=ExtResource( 3 )]
 
@@ -137,3 +137,4 @@ shape = SubResource( 2 )
 [connection signal="spanwedCoin" from="ItemSpawner" to="Evilhand2" method="_on_ItemSpawner_spanwedCoin"]
 [connection signal="spawnCoin" from="DustBunny_Spawnable" to="ItemSpawner" method="_on_DustBunny_Spawnable_spawnCoin"]
 [connection signal="deadHand" from="Evilhand2" to="ItemSpawner" method="_on_Evilhand2_deadHand"]
+[connection signal="deadHand" from="Evilhand2" to="PlayerNode" method="_on_Evilhand2_deadHand"]

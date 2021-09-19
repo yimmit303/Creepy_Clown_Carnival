@@ -3,6 +3,8 @@ extends Node
 var MousePos
 var kinematicBody
 
+var coins = 0
+
 func _ready():
 	kinematicBody = $PlayerKinematicBody
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

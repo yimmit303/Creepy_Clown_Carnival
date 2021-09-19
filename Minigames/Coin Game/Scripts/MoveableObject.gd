@@ -15,11 +15,19 @@ var MousePos
 
 signal spawnCoin
 
+var rng = RandomNumberGenerator.new()
+var my_random_number
+
 func _ready():
 	rigidBody = $RigidBody2D
 	particles = $RigidBody2D/DustParticles
 	particles.emitting = false
 	rigidBody.gravity_scale = 0
+	
+	var x = rng.randf_range(153, 1733)
+	var y = rng.randf_range(21, 787)
+	position.x = x
+	position.y = y
 
 func startHolding():
 	lastHeld = time

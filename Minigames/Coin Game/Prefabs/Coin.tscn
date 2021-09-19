@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Minigames/Coin Game/Scripts/CoinBounce.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Coin Game/Materials/MarioCoin.png" type="Texture" id=2]
+[ext_resource path="res://Minigames/Timer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 55.8271
@@ -29,4 +30,7 @@ texture = ExtResource( 2 )
 scale = Vector2( 0.8, 0.8 )
 shape = SubResource( 1 )
 
+[node name="Timer" parent="." instance=ExtResource( 3 )]
+
 [connection signal="mouse_entered" from="CoinKinematicBody" to="CoinKinematicBody" method="_on_CoinKinematicBody_mouse_entered"]
+[connection signal="time_out" from="Timer" to="CoinKinematicBody" method="_on_Timer_time_out"]

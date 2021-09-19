@@ -13,13 +13,16 @@ var my_random_number
 signal deadHand
 var player
 
-var invincibleTimer = 4
+var invincibleTimer = 8
 
 func _ready():
 	kinematicBody = $EnemyKinematicBody
 	player = get_node("../PlayerNode")
 	
-	print("spawning new hand!")
+	var x = rng.randf_range(153, 1733)
+	var y = rng.randf_range(21, 787)
+	kinematicBody.position.x = x
+	kinematicBody.position.y = y
 
 #get_viewport().get_mouse_position()
 
