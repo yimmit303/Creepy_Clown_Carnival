@@ -4,7 +4,7 @@ var original_path = -1
 var face_code = ""
 
 func _ready():
-	original_path = int(get_parent().name[-1])
+	original_path = get_parent().name[-1]
 	
 func set_face_code(code):
 	var index = 0

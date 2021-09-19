@@ -14,7 +14,7 @@
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/nose1.png" type="Texture" id=12]
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/nose2.png" type="Texture" id=13]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
@@ -32,7 +32,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 95.3269, 44.2899 )
 
 [sub_resource type="SpriteFrames" id=3]
@@ -63,15 +63,16 @@ animations = [ {
 "PUMPKIN",
 ]]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "Float1"
 script = ExtResource( 7 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area" type="Area2D" parent="."]
+monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Shape" type="CollisionShape2D" parent="Area"]
 position = Vector2( 3.01552, -31.8339 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Face" type="Node2D" parent="."]
 visible = false

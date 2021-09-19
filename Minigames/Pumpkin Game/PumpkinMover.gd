@@ -1,6 +1,6 @@
 extends Node2D
 
-var face_codes = ["0110", "1001", "1111", "1001", "0000", "1111", "0110", "1001"]
+var face_codes = ["0110", "0000", "1111", "1001", "0000", "1111", "0110", "1001"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +17,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for path in $PumpkinPath.get_children():
-		path.offset += 100 * delta
+		path.offset += 150 * delta
 
 func get_pumpkins():
 	return get_tree().get_nodes_in_group("PUMPKIN")
+
+
+func _on_return_pumpkins(pumps):
+	for pump in pumps:
+		pump.get_parent().call_deferred("remove_child", pump)
+		pump.get_node("Area/Shape").call_deferred("set", "disabled", false)
+		var origin = pump.original_path
+		for path in $PumpkinPath.get_children():
+			var path_num = path.name[-1]
+			if origin == path_num:
+				path.call_deferred("add_child", pump)
+				pump.position = Vector2(0, 0)
+				pump.frame = 0
+				pump.set_face_visible(false)
+				break
