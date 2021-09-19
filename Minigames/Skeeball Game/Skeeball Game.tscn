@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball Game.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball_Spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball_Ramp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Minigames/Skeeball Game/ProgressBar.gd" type="Script" id=4]
+[ext_resource path="res://Minigames/Effects/one.png" type="Texture" id=5]
 
 [node name="Skeeball Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,12 +15,16 @@ position = Vector2( 946.288, 487.72 )
 [node name="Skeeball_Spawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 945.167, 808.381 )
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 1110.72
-margin_top = 581.322
-margin_right = 1114.72
-margin_bottom = 595.322
-rect_scale = Vector2( 5, 15 )
+[node name="ProgressBar" type="TextureProgress" parent="."]
+margin_left = 1122.99
+margin_top = 590.489
+margin_right = 1123.99
+margin_bottom = 591.489
+rect_scale = Vector2( 20, 200 )
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+fill_mode = 3
+tint_progress = Color( 0.988235, 0.729412, 0, 1 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
