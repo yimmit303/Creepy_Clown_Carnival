@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgress
 
 signal shoot(value)
 
@@ -12,16 +12,14 @@ func _process(delta):
 			total = 100
 	if not charge:
 		total = 0
-	self.percent_visible = total
+	self.value = total
 
 
 func _on_Skeeball_Spawner_charging():
-	print_debug("AAAAAAAAAA")
 	charge = true
 
 
 func _on_Skeeball_Spawner_not_charging():
 	charge = false
-	print_debug(total)
 	emit_signal("shoot", total)
 	total = 0
