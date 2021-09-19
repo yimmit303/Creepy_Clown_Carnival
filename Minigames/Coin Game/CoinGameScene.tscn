@@ -56,6 +56,16 @@ texture = ExtResource( 2 )
 position = Vector2( 25, 50 )
 shape = SubResource( 1 )
 
+[node name="label" type="RichTextLabel" parent="PlayerNode"]
+margin_left = 736.625
+margin_top = 48.772
+margin_right = 1005.62
+margin_bottom = 101.772
+text = "Number of New Coins:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Evilhand2" parent="." instance=ExtResource( 3 )]
 
 [node name="Coin" parent="." instance=ExtResource( 5 )]
@@ -141,7 +151,9 @@ shape = SubResource( 2 )
 
 [connection signal="addOneToPlayerCoins" from="ItemSpawner" to="PlayerNode" method="_on_ItemSpawner_addOneToPlayerCoins"]
 [connection signal="spanwedCoin" from="ItemSpawner" to="Evilhand2" method="_on_ItemSpawner_spanwedCoin"]
+[connection signal="addMeIfNot" from="DustBunny_Spawnable" to="ItemSpawner" method="_on_DustBunny_Spawnable_addMeIfNot"]
 [connection signal="spawnCoin" from="DustBunny_Spawnable" to="ItemSpawner" method="_on_DustBunny_Spawnable_spawnCoin"]
+[connection signal="addMeIfNot" from="Evilhand2" to="ItemSpawner" method="_on_Evilhand2_addMeIfNot"]
 [connection signal="deadHand" from="Evilhand2" to="PlayerNode" method="_on_Evilhand2_deadHand"]
 [connection signal="deadHand" from="Evilhand2" to="ItemSpawner" method="_on_Evilhand2_deadHand"]
 [connection signal="coinUpForGrabs" from="Coin" to="ItemSpawner" method="_on_Coin_coinUpForGrabs"]

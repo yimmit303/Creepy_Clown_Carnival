@@ -17,6 +17,7 @@ signal spawnCoin
 
 var rng = RandomNumberGenerator.new()
 var my_random_number
+signal addMeIfNot
 
 func _ready():
 	rigidBody = $RigidBody2D
@@ -28,6 +29,8 @@ func _ready():
 	var y = rng.randf_range(21, 787)
 	position.x = x
 	position.y = y
+	
+	emit_signal("addMeIfNot", self)
 
 func startHolding():
 	lastHeld = time

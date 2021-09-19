@@ -2,12 +2,14 @@ extends Node
 
 var MousePos
 var kinematicBody
+var countLabel
 
 export var coins = 0
 
 func _ready():
 	kinematicBody = $PlayerKinematicBody
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	countLabel = $label
 
 #get_viewport().get_mouse_position()
 
@@ -34,3 +36,4 @@ func _process(delta):
 
 func _on_ItemSpawner_addOneToPlayerCoins():
 	coins += 1
+	countLabel.text = "Number of coins gained: " + str(coins)

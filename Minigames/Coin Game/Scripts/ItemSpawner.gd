@@ -32,8 +32,9 @@ func _ready():
 	dustBunnyPrefab = load("res://Minigames/Coin Game/Prefabs/DustBunny.tscn")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if(aliveObjects.size() <= 0):
+		print("empty")
 
 
 func _on_DustBunny_Spawnable_spawnCoin(rigidBody):
@@ -68,11 +69,19 @@ func _on_Evilhand2_deadHand(num = 2):
 		
 		newHand.connect("deadHand", self, "_on_Evilhand2_deadHand")
 		
+		var deadBabies = []
+		
 		for i in range(0, aliveObjects.size()):
 			var child = aliveObjects[i]
-			if(child.is_in_group("Coin")):
-				newHand._on_ItemSpawner_spanwedCoin(child)
-				break
+			if(child):
+				if(child.is_in_group("Coin")):
+					newHand._on_ItemSpawner_spanwedCoin(child)
+					break
+			else:
+				deadBabies.append(i)
+		
+		for i in range(0, deadBabies.size()):
+			aliveObjects.remove(deadBabies[i])		
 		
 		aliveObjects.append(newHand)
 		
@@ -84,20 +93,32 @@ func _on_Evilhand2_deadHand(num = 2):
 			aliveObjects.append(newDust)
 		
 func _on_Coin_coinUpForGrabs(humanPointYesNo, coin):
-	print("count up")
-	print(coin)
+	#print("count up")
+	#print(coin)
 	
 	coin = get_node(coin)
 	
 	if(humanPointYesNo):
 		emit_signal("addOneToPlayerCoins")
-	
-	print(coin)
+		
+	#print(coin)
+	var deadBabies = []
 	
 	for i in range(0, aliveObjects.size()):
 		var child = aliveObjects[i]
-		if(child.is_in_group("Enemy")):
-			if(child.coin == coin):
-				child.coin = null
-		
+		if(child):
+			if(child.is_in_group("Enemy")):
+				if(child.coin == coin):
+					child.coin = null
+		else:
+			deadBabies.append(i)
+	for i in range(0, deadBabies.size()):
+		aliveObjects.remove(deadBabies[i])		
+	
 	coin.queue_free()
+
+func _on_Evilhand2_addMeIfNot(evilHand):
+	aliveObjects.append(evilHand)
+
+func _on_DustBunny_Spawnable_addMeIfNot(dustBunny):
+	aliveObjects.append(dustBunny)

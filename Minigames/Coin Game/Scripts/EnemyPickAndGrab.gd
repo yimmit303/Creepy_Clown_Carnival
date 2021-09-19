@@ -15,6 +15,8 @@ var player
 
 var invincibleTimer = 8
 
+signal addMeIfNot
+
 func _ready():
 	kinematicBody = $EnemyKinematicBody
 	player = get_node("../PlayerNode")
@@ -23,6 +25,8 @@ func _ready():
 	var y = rng.randf_range(21, 787)
 	kinematicBody.position.x = x
 	kinematicBody.position.y = y
+	
+	emit_signal("addMeIfNot", self)
 
 #get_viewport().get_mouse_position()
 
@@ -49,28 +53,33 @@ func _process(delta):
 		#input_movement_vector.y -= 1
 	time += delta
 	
+	var vec = null
 	if(coin == null):
 		#bob up and down
 		kinematicBody.position.y += sin(time) * 0.25
 	else:
-		var vec = coin.get_global_position() - kinematicBody.get_global_position()
+		#print(coin, kinematicBody)
+		if(coin != null):
+			#var old = coin.get_global_position() - kinematicBody.get_global_position()
+			vec = coin.position - kinematicBody.position
 	
-		if(vec.length() >= 500):
-			my_random_number = rng.randf_range(-200, 200)
-			vec.x += my_random_number
-			my_random_number = rng.randf_range(-200, 200)
-			vec.y += my_random_number
+		if(vec):
+			if(vec.length() >= 500):
+				my_random_number = rng.randf_range(-200, 200)
+				vec.x += my_random_number
+				my_random_number = rng.randf_range(-200, 200)
+				vec.y += my_random_number
+		
+			var velocity = vec.normalized() * maxSpeed
+		
+			if(vec.length() <= 500):
+				velocity -= 1000* vec.normalized()
+		
+			#kinematicBody.move_and_slide(velocity)
+			var collide_info = kinematicBody.move_and_collide(velocity)
 	
-		var velocity = vec.normalized() * maxSpeed
-	
-		if(vec.length() <= 500):
-			velocity -= 1000* vec.normalized()
-	
-		#kinematicBody.move_and_slide(velocity)
-		var collide_info = kinematicBody.move_and_collide(velocity)
-	
-		if(invincibleTimer <= 0 and collide_info and collide_info.collider and collide_info.collider.is_in_group("Player") and click):
-			possible_death()
+			if(invincibleTimer <= 0 and collide_info and collide_info.collider and collide_info.collider.is_in_group("Player") and click):
+				possible_death()
 		
 	#kinematicBody.set_global_position(MousePos)
 		
@@ -93,7 +102,7 @@ func possible_death():
 	"""
 	emit_signal("deadHand")
 	
-	print("dead hand activated")
+	#print("dead hand activated")
 	
 	queue_free()
 

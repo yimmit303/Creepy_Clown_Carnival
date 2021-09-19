@@ -20,6 +20,6 @@ func _ready():
 
 
 func _on_CoinKinematicBody_coinGone(winner, path):
-	print("send onward")
+	#print("send onward")
 	emit_signal("coinUpForGrabs", winner, path)
 	
