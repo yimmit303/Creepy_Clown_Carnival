@@ -1,5 +1,8 @@
 extends Node2D
 
+signal game_won
+signal game_lost
+
 var active = false
 var num_popped = 0
 
@@ -21,6 +24,7 @@ func _on_game_won():
 	$BalloonSpawner.pop_all()
 	$WinScreen.play()
 	yield($WinScreen, "done_playing")
+	emit_signal("game_won")
 
 func _on_game_lost():
 	if num_popped < 3: # This stops the win and loss from happening at the same time
@@ -28,6 +32,7 @@ func _on_game_lost():
 		$BalloonSpawner.pop_all()
 		$LoseScreen.play()
 		yield($LoseScreen, "done_playing")
+		emit_signal("game_lost")
 
 func _on_balloon_popped():
 	num_popped += 1

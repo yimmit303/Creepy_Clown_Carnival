@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Main_Level/Environment/SpookTree3 main.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main_Level/Environment/EnvironmentMats/LandscapeBaseColor3.jpg" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Main_Level/Environment/LightPost.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Main_Level/Environment/Hedge.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Main_Level/Environment/StonePathDone.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Main_Level/Environment/SpookTree1 main.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Main_Level/Environment/ThornsSmall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Main_Level/Environment/ThornsLarge.tscn" type="PackedScene" id=13]
@@ -55,15 +54,19 @@ transform = Transform( -0.00388228, 0, 0.0144889, 0, 0.015, 0, -0.0144889, 0, -0
 
 [node name="Booth2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.0038823, 0, 0.0144889, 0, 0.015, 0, -0.0144889, 0, 0.0038823, -42.7294, -1.40786, -58.6042 )
+visible = false
 
 [node name="Booth5" parent="." instance=ExtResource( 6 )]
 transform = Transform( -9.58888e-09, 0, -0.015, 0, 0.015, 0, 0.015, 0, -9.58888e-09, 107.978, -0.14888, -18.992 )
+visible = false
 
 [node name="Booth3" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.015, 0, -1.04774e-08, 0, 0.015, 0, 1.04774e-08, 0, 0.015, 47.4084, -0.373822, -101.088 )
+visible = false
 
 [node name="Booth4" parent="." instance=ExtResource( 6 )]
 transform = Transform( -0.015, 0, 1.02445e-08, 0, 0.015, 0, -1.02445e-08, 0, -0.015, 46.0803, -0.357953, 58.2624 )
+visible = false
 
 [node name="LightPost" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -55.1201, -0.236713, -0.373144 )
@@ -294,7 +297,3 @@ visible = false
 
 [node name="LightPost4" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.000225, 0, 0, 0, 0.000225, 0, 0, 0, 0.000225, -124.348, 80.087, -12.1076 )
-
-[node name="Player" parent="." instance=ExtResource( 10 )]
-transform = Transform( -0.174687, 0, -3.99618, 0, 4, 0, 3.99618, 0, -0.174687, -85.1219, 6.27453, -37.5546 )
-visible = false

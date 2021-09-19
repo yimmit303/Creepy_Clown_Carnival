@@ -78,20 +78,20 @@ shape = SubResource( 2 )
 visible = false
 
 [node name="Eye1" type="AnimatedSprite" parent="Face"]
-position = Vector2( -32.0189, -25.6994 )
+position = Vector2( -6.09165, -16.507 )
 frames = SubResource( 3 )
 animation = "Eye"
 frame = 1
 
 [node name="Eye2" type="AnimatedSprite" parent="Face"]
-position = Vector2( 49.2922, -22.7503 )
+position = Vector2( 67.677, -14.0293 )
 frames = SubResource( 3 )
 animation = "Eye"
 
 [node name="Nose" type="AnimatedSprite" parent="Face"]
-position = Vector2( 7.42007, 1.42728 )
+position = Vector2( 1.52755, -3.05105 )
 frames = SubResource( 4 )
 
 [node name="Mouth" type="AnimatedSprite" parent="Face"]
-position = Vector2( -0.222473, 36.9306 )
+position = Vector2( 1.19174, 8.17492 )
 frames = SubResource( 5 )
