@@ -2,7 +2,7 @@ extends Node2D
 var skeeball = load("Minigames/Skeeball Game/Skeeball.tscn")
 var force = 0
 var max_force = 30
-var disabled = false
+var disabled = true
 
 signal charging()
 signal not_charging()

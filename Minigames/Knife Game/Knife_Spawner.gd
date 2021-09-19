@@ -1,11 +1,9 @@
 extends Node2D
 var knife = load("Minigames/Knife Game/Knife.tscn")
 var set_spawn = false
-var disabled = false
+var disabled = true
 var max_delay = 1.0
 var delay = 0.0
-func _ready():
-	pass # Replace with function body.
 
 func disable():
 	disabled = true

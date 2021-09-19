@@ -5,7 +5,7 @@ export var score = 0
 signal score_hit(val)
 
 func _ready():
-	pass # Replace with function body.
+	$Scorething.text = str(score)
 
 
 func _on_Skeehole_body_entered(body):

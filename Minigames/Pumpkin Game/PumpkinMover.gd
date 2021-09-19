@@ -1,6 +1,7 @@
 extends Node2D
 
 var face_codes = ["0110", "0000", "1111", "1001", "0000", "1111", "0110", "1001"]
+var can_move = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +17,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for path in $PumpkinPath.get_children():
-		path.offset += 150 * delta
+	if can_move:
+		for path in $PumpkinPath.get_children():
+			path.offset += 150 * delta
 
 func get_pumpkins():
 	return get_tree().get_nodes_in_group("PUMPKIN")
