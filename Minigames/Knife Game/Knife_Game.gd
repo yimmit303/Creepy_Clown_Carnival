@@ -7,6 +7,9 @@ signal game_lost()
 
 func make_active():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$WinScreen.reset()
+	$LoseScreen.reset()
+	$Knife_Spawner.reset()
 	$Knife_Spawner.activate()
 	$Moosic.play()
 	

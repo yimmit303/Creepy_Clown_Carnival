@@ -24,6 +24,9 @@ func reparent():
 	wheel.add_child(self)
 	set_global_transform(transformation)
 
+func get_vel():
+	return vel
+
 func hit_wheel():
 	wheel.hit()
 

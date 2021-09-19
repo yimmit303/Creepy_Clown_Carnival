@@ -26,8 +26,16 @@ func _process(delta):
 	 "\n" + "Minimum score needed: " + str(min_score))
 	
 func make_active():
+	score = 0
+	ammo = 20
+	min_score = 300
+	done = false
+	timer = 2.0
 	done = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$WinScreen.reset()
+	$LoseScreen.reset()
+	$Skeeball_Spawner.reset()
 	$Skeeball_Spawner.activate()
 	$Moosic.play()
 	
