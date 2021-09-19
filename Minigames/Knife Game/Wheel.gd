@@ -1,5 +1,5 @@
 extends KinematicBody2D
-var difficulty  = 5
+var difficulty = 5
 var rate = 15
 var cur_angle = 0
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Minigames/Knife Game/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Minigames/Knife Game/Knife_Spawner.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Minigames/Knife Game/Knife-game-BG.png" type="Texture" id=7]
 [ext_resource path="res://Minigames/Knife Game/Sounds/Knife_Game.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Minigames/Balloon Game/Sprites/Reticle.png" type="Texture" id=9]
 
 [node name="Knife_Game" type="Node2D"]
 script = ExtResource( 3 )
@@ -46,3 +47,9 @@ position = Vector2( 957.355, 535.395 )
 
 [node name="Moosic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.545098 )
+position = Vector2( 1257.26, 398.496 )
+rotation = -2.8955
+texture = ExtResource( 9 )
