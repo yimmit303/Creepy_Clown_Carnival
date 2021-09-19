@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main_Level/Scripts/DebugDraw.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Main_Level/Scripts/TwinkleEffect.gd" type="Script" id=7]
 [ext_resource path="res://Main_Level/Materials/StarTwinkleMask.png" type="Texture" id=8]
 [ext_resource path="res://Main_Level/Scripts/MinigameClass.gd" type="Script" id=9]
+[ext_resource path="res://Main_Level/counter.gd" type="Script" id=10]
 [ext_resource path="res://Main_Level/Environment/ThornsSmall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Main_Level/Environment/Landscape.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main_Level/Environment/SpookTree2 main.tscn" type="PackedScene" id=14]
@@ -175,6 +176,7 @@ environment = ExtResource( 24 )
 transform = Transform( 0.343612, 0.349795, -0.871536, 0.643718, 0.587994, 0.489786, 0.683782, -0.729319, -0.0231273, -31.0564, 47.6, -7.69125 )
 
 [node name="Altars" type="Node" parent="."]
+script = ExtResource( 10 )
 
 [node name="PentagramHitbox_Booth" parent="Altars" instance=ExtResource( 5 )]
 transform = Transform( 0.133761, 0, -0.991014, 0, 1, 0, 0.991014, 0, 0.133761, 37.0991, 2.43854, -15.326 )
@@ -238,11 +240,11 @@ miniGamePath = "res://Minigames/Skeeball Game/Skeeball Game.tscn"
 
 [node name="ThornsSmall" parent="Node" instance=ExtResource( 12 )]
 
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth3/Platform" method="_on_Player_altarSignal"]
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth2/Platform" method="_on_Player_altarSignal"]
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth/Platform" method="_on_Player_altarSignal"]
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth4/Platform" method="_on_Player_altarSignal"]
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth5/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth3/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth2/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth4/Platform" method="_on_Player_altarSignal"]
 [connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
 [connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Player" method="_on_ArcadeRigidBody_completed_minigame"]
