@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Minigames/Pumpkin Game/PumpkinGame.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/Pumpkin-Cauldron.png" type="Texture" id=2]
-[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Rod.png" type="Texture" id=3]
+[ext_resource path="res://Minigames/Pumpkin Game/Sprites/FishingRod.png" type="Texture" id=3]
 [ext_resource path="res://Minigames/Pumpkin Game/Hook.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Minigames/Pumpkin Game/PumpkinMover.gd" type="Script" id=5]
-[ext_resource path="res://Minigames/Balloon Game/Sounds/Balloon.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Minigames/Pumpkin Game/Sounds/Pumpkin_Game.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Minigames/Timer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=9]
@@ -44,15 +44,14 @@ __meta__ = {
 }
 
 [node name="Rod" type="Sprite" parent="."]
-position = Vector2( 1306.75, 388.885 )
-scale = Vector2( 28.3253, 14.3316 )
+position = Vector2( 1353.51, 439.478 )
+rotation = -0.46652
+scale = Vector2( 1.45255, 1.16845 )
 texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="RodPoint" type="Node2D" parent="Rod"]
-position = Vector2( -10.5478, -13.8486 )
+position = Vector2( -136.19, -338.749 )
+scale = Vector2( 28.3253, 14.3316 )
 
 [node name="Hook" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1000, 270 )
@@ -60,7 +59,6 @@ scale = Vector2( 1, 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -18.107
 
 [node name="Timer" parent="." instance=ExtResource( 7 )]
 time_left = 120

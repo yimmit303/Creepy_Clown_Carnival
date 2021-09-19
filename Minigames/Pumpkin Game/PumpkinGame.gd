@@ -1,10 +1,9 @@
 extends Node2D
 
+signal game_won
+signal game_lost
+
 var active = false
-
-
-func _ready():
-	make_active()
 
 func _process(_delta):
 	if active:
@@ -15,6 +14,7 @@ func make_active():
 	self.active = true
 	$Hook.can_hook = true
 	$Timer.counting = true
+	$PumpkinMover.can_move = true
 	$Music.play()
 
 func make_inactive():
@@ -22,14 +22,17 @@ func make_inactive():
 	self.active = false
 	$Hook.can_hook = false
 	$Timer.counting = false
+	$PumpkinMover.can_move = false
 	$Music.stop()
 
 func _on_game_won():
 	make_inactive()
 	$WinScreen.play()
 	yield($WinScreen, "done_playing")
+	emit_signal("game_won")
 
 func _on_game_lost():
 	make_inactive()
 	$LoseScreen.play()
 	yield($LoseScreen, "done_playing")
+	emit_signal("game_lost")
