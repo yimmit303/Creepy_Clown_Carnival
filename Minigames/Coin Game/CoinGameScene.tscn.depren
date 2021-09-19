@@ -46,10 +46,7 @@ script = ExtResource( 3 )
 
 [node name="RigidBody2D" type="RigidBody2D" parent="DustBunny_Spawnable"]
 input_pickable = true
-collision_layer = 512
-collision_mask = 512
 gravity_scale = 0.0
-contact_monitor = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DustBunny_Spawnable/RigidBody2D"]
 position = Vector2( -3.5636, -10.6908 )
@@ -117,15 +114,18 @@ shape = SubResource( 2 )
 [node name="Coin" type="Node2D" parent="."]
 position = Vector2( 871.92, 406.945 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Coin"]
+[node name="RigidBody2D" type="RigidBody2D" parent="Coin"]
 input_pickable = true
+mass = 20.4082
+gravity_scale = 4.0
+contact_monitor = true
 script = ExtResource( 10 )
 
-[node name="Coin_Image" type="Sprite" parent="Coin/KinematicBody2D"]
+[node name="Coin_Image" type="Sprite" parent="Coin/RigidBody2D"]
 scale = Vector2( 0.15, 0.1 )
 texture = ExtResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin/RigidBody2D"]
 scale = Vector2( 0.8, 0.8 )
 shape = SubResource( 3 )
 

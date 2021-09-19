@@ -35,14 +35,14 @@ glow_enabled = true
 glow_intensity = 4.83
 glow_strength = 1.49
 
-[sub_resource type="CylinderShape" id=13]
+[sub_resource type="CylinderShape" id=10]
 
-[sub_resource type="CylinderMesh" id=10]
+[sub_resource type="CylinderMesh" id=11]
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=12]
 albedo_color = Color( 0.796078, 0.227451, 0.298039, 1 )
 
-[sub_resource type="SphereMesh" id=12]
+[sub_resource type="SphereMesh" id=13]
 
 [node name="Root" type="Spatial"]
 
@@ -185,14 +185,14 @@ script = ExtResource( 10 )
 "Interactable",
 ]]
 transform = Transform( 2.32629, 0, 0, 0, 2.82643, 0, 0, 0, 2.32629, -15.3613, 3.13406, 9.2337 )
-shape = SubResource( 13 )
+shape = SubResource( 10 )
 
 [node name="Platform" type="MeshInstance" parent="Altars/PentagramHitbox" groups=[
 "Interactable",
 ]]
 transform = Transform( 2.32629, 0, 0, 0, 0.227424, 0, 0, 0, 2.32629, -15.3613, 0.560213, 9.2337 )
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 script = ExtResource( 5 )
 minigameName = "ArcadeRigidBody"
 
@@ -200,11 +200,11 @@ minigameName = "ArcadeRigidBody"
 "Interactable",
 ]]
 transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 9, 0 )
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
-[connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
 [connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
+[connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
 [connection signal="interactWithObject" from="Player" to="Altars/PentagramHitbox" method="_on_Player_interactWithObject"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Altars/PentagramHitbox/Platform" method="_on_ArcadeRigidBody_completed_minigame"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Player" method="_on_ArcadeRigidBody_completed_minigame"]

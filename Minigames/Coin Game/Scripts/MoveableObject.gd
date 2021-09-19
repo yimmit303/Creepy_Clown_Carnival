@@ -16,6 +16,7 @@ func _ready():
 	rigidBody = $RigidBody2D
 	particles = $RigidBody2D/DustParticles
 	particles.emitting = false
+	rigidBody.gravity_scale = 0
 
 func startHolding():
 	lastHeld = time
@@ -63,11 +64,13 @@ func _on_RigidBody2D_mouse_exited():
 
 func _on_Node2D_leftClickedSignal():
 	if(ontopOf):
+		print("holding")
 		startHolding()
 	pass # Replace with function body.
 
 func _on_Node2D_leftUnclickedSignal():
 	if(grabbed):
 		grabbed = false
-		#print("let go")
+		#rigidBody.gravity_scale = 20
+		print("let go")
 	pass # Replace with function body.
