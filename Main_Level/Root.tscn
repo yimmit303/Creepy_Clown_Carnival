@@ -190,18 +190,18 @@ transform = Transform( 0.665367, -0.670692, -0.327809, 0.728132, 0.679916, 0.086
 
 [node name="Altars" type="Node" parent="."]
 
-[node name="PentagramHitbox" type="StaticBody" parent="Altars" groups=[
+[node name="PentagramHitbox_Booth" type="StaticBody" parent="Altars" groups=[
 "Interactable",
 ]]
 script = ExtResource( 10 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Altars/PentagramHitbox" groups=[
+[node name="CollisionShape" type="CollisionShape" parent="Altars/PentagramHitbox_Booth" groups=[
 "Interactable",
 ]]
 transform = Transform( 2.32629, 0, 0, 0, 2.82643, 0, 0, 0, 2.32629, -15.3613, 3.13406, 9.2337 )
 shape = SubResource( 10 )
 
-[node name="Platform" type="MeshInstance" parent="Altars/PentagramHitbox" groups=[
+[node name="Platform" type="MeshInstance" parent="Altars/PentagramHitbox_Booth" groups=[
 "Interactable",
 ]]
 transform = Transform( 2.32629, 0, 0, 0, 0.227424, 0, 0, 0, 2.32629, -15.3613, 0.560213, 9.2337 )
@@ -210,7 +210,7 @@ material/0 = SubResource( 12 )
 script = ExtResource( 5 )
 minigameName = "Booth"
 
-[node name="Idol" type="MeshInstance" parent="Altars/PentagramHitbox/Platform" groups=[
+[node name="Idol" type="MeshInstance" parent="Altars/PentagramHitbox_Booth/Platform" groups=[
 "Interactable",
 ]]
 transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 9, 0 )
@@ -243,9 +243,9 @@ material/0 = null
 
 [node name="ThornsSmall" parent="Node" instance=ExtResource( 12 )]
 
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox/Platform" method="_on_Player_altarSignal"]
-[connection signal="interactWithObject" from="Player" to="Altars/PentagramHitbox" method="_on_Player_interactWithObject"]
-[connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth/Platform" method="_on_Player_altarSignal"]
 [connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
+[connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
+[connection signal="interactWithObject" from="Player" to="Altars/PentagramHitbox_Booth" method="_on_Player_interactWithObject"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Player" method="_on_ArcadeRigidBody_completed_minigame"]
-[connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Altars/PentagramHitbox/Platform" method="_on_ArcadeRigidBody_completed_minigame"]
+[connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Altars/PentagramHitbox_Booth/Platform" method="_on_ArcadeRigidBody_completed_minigame"]
