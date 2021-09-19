@@ -10,6 +10,9 @@ func _ready():
 func disable():
 	disabled = true
 
+func activate():
+	disabled = false
+
 func _input(event):
 	if not disabled:
 		if event is InputEventMouseButton:

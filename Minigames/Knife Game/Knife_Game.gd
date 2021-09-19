@@ -1,9 +1,16 @@
 extends Node2D
 
 var total = 0
-var life = 5
+var life = 10
 
+func _ready():
+	make_active()
 
+func make_active():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$Knife_Spawner.activate()
+	$Moosic.play()
+	
 func scored(score):
 	if score < 0:
 		life -= 1
@@ -14,12 +21,13 @@ func scored(score):
 		
 func make_inactive():
 	$Knife_Spawner.disable()
+	$Moosic.stop()
 	
 func _process(delta):
 	$Scoreboard.print_text("Lives: " + str(life) + "\n" + "Score: " + str(total))
 	
 func _on_game_won():
-	if total >= 5:
+	if total >= 10:
 		make_inactive()
 		$WinScreen.play()
 		yield($WinScreen, "done_playing")

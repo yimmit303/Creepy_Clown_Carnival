@@ -1,5 +1,5 @@
 extends KinematicBody2D
-var difficulty  = 1
+var difficulty  = 5
 var rate = 15
 var cur_angle = 0
 
@@ -16,8 +16,8 @@ func turn(n, dt):
 func hit():
 	var score = 0
 	var turned = int(cur_angle) % 360
-	var slice = turned / 45
-	if slice % 2 == 0:
+	var slice = turned / 45.0
+	if int(slice) % 2 != 0:
 		score = 1
 	else:
 		score = -1
