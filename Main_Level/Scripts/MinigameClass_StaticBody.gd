@@ -14,6 +14,11 @@ func startGame():
 	running = true
 	#print("starting game now!")
 	
+	var game = $game
+	if(game != null):
+		game.make_active()
+	
+	"""
 	#wait
 	var t = Timer.new()
 	t.set_wait_time(4)
@@ -23,8 +28,7 @@ func startGame():
 	yield(t, "timeout")
 	t.queue_free()
 	#done waiting
-	
-	finishGame()
+	"""
 	
 func finishGame():
 	running = false
@@ -52,3 +56,12 @@ func _on_Player_interactWithObject(object):
 		player.swapCamera(self)
 		player.interact = false
 		player.hand.ready_to_play = false
+
+
+func _on_game_game_won():
+	wonGame = true
+	finishGame()
+
+func _on_game_game_lost():
+	wonGame = false
+	finishGame()

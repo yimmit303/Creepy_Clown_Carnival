@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main_Level/Scripts/DebugDraw.gd" type="Script" id=2]
@@ -9,9 +9,13 @@
 [ext_resource path="res://Main_Level/Scripts/TwinkleEffect.gd" type="Script" id=7]
 [ext_resource path="res://Main_Level/Materials/StarTwinkleMask.png" type="Texture" id=8]
 [ext_resource path="res://Main_Level/Scripts/MinigameClass.gd" type="Script" id=9]
+[ext_resource path="res://Minigames/Balloon Game/Balloon_Game.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Minigames/Pumpkin Game/PumpkinGame.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Main_Level/Environment/ThornsSmall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Main_Level/Environment/Landscape.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main_Level/Environment/SpookTree2 main.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Minigames/Skeeball Game/Skeeball Game.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Minigames/Knife Game/Knife_Game.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Main_Level/Environment/Hedge.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Main_Level/Environment/StonePathDone.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main_Level/Environment/ThornsMedium.tscn" type="PackedScene" id=19]
@@ -175,7 +179,7 @@ texture = ExtResource( 8 )
 environment = SubResource( 9 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.665367, -0.670692, -0.327809, 0.728132, 0.679916, 0.0868217, 0.164652, -0.296457, 0.940746, -31.0564, 16.3325, -7.69125 )
+transform = Transform( 0.343612, 0.349795, -0.871536, 0.643718, 0.587994, 0.489786, 0.683782, -0.729319, -0.0231273, -31.0564, 47.6, -7.69125 )
 
 [node name="Altars" type="Node" parent="."]
 
@@ -199,6 +203,7 @@ transform = Transform( -0.969162, 0, -0.246424, 0, 1, 0, 0.246424, 0, -0.969162,
 
 [node name="Platform" parent="Altars/PentagramHitbox_Booth4" index="0"]
 minigameName = "Booth4"
+alwaysAccept = true
 
 [node name="PentagramHitbox_Booth5" parent="Altars" instance=ExtResource( 5 )]
 transform = Transform( 0.777278, 0, 0.629158, 0, 1, 0, -0.629158, 0, 0.777278, 19.3914, 2.49515, -24.7846 )
@@ -211,6 +216,17 @@ minigameName = "Booth5"
 [node name="Hedge" parent="Node" instance=ExtResource( 17 )]
 
 [node name="Ground" parent="Node" instance=ExtResource( 13 )]
+
+[node name="game" parent="Node/Ground/Booth/StaticBody" index="0" instance=ExtResource( 15 )]
+visible = false
+
+[node name="game" parent="Node/Ground/Booth2/StaticBody" index="1" instance=ExtResource( 11 )]
+visible = false
+
+[node name="game" parent="Node/Ground/Booth5/StaticBody" index="1" instance=ExtResource( 10 )]
+visible = false
+
+[node name="game" parent="Node/Ground/Booth3/StaticBody" index="0" instance=ExtResource( 16 )]
 
 [node name="LightPost" parent="Node" instance=ExtResource( 22 )]
 
@@ -230,12 +246,20 @@ minigameName = "Booth5"
 
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth4/Platform" method="_on_Player_altarSignal"]
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth5/Platform" method="_on_Player_altarSignal"]
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth2/Platform" method="_on_Player_altarSignal"]
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth2/Platform" method="_on_Player_altarSignal"]
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth3/Platform" method="_on_Player_altarSignal"]
 [connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
 [connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Player" method="_on_ArcadeRigidBody_completed_minigame"]
+[connection signal="game_lost" from="Node/Ground/Booth/StaticBody/game" to="Node/Ground/Booth/StaticBody" method="_on_game_game_lost"]
+[connection signal="game_won" from="Node/Ground/Booth/StaticBody/game" to="Node/Ground/Booth/StaticBody" method="_on_game_game_won"]
+[connection signal="game_lost" from="Node/Ground/Booth2/StaticBody/game" to="Node/Ground/Booth2/StaticBody" method="_on_game_game_lost"]
+[connection signal="game_won" from="Node/Ground/Booth2/StaticBody/game" to="Node/Ground/Booth2/StaticBody" method="_on_game_game_won"]
+[connection signal="game_lost" from="Node/Ground/Booth5/StaticBody/game" to="Node/Ground/Booth5/StaticBody" method="_on_game_game_lost"]
+[connection signal="game_won" from="Node/Ground/Booth5/StaticBody/game" to="Node/Ground/Booth5/StaticBody" method="_on_game_game_won"]
+[connection signal="game_lost" from="Node/Ground/Booth3/StaticBody/game" to="Node/Ground/Booth3/StaticBody" method="_on_game_game_lost"]
+[connection signal="game_won" from="Node/Ground/Booth3/StaticBody/game" to="Node/Ground/Booth3/StaticBody" method="_on_game_game_won"]
 
 [editable path="Player"]
 [editable path="Altars/PentagramHitbox_Booth"]
@@ -246,3 +270,6 @@ minigameName = "Booth5"
 [editable path="Node/Ground"]
 [editable path="Node/Ground/Booth"]
 [editable path="Node/Ground/Booth2"]
+[editable path="Node/Ground/Booth5"]
+[editable path="Node/Ground/Booth3"]
+[editable path="Node/Ground/Booth4"]
