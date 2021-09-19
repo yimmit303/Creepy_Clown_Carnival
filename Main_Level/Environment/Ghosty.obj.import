@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Ghosty.obj-569434c6297c0d57e773517c09fdfdbf.mesh"
+
+[deps]
+
+files=[ "res://.import/Ghosty.obj-569434c6297c0d57e773517c09fdfdbf.mesh" ]
+
+source_file="res://Main_Level/Environment/Ghosty.obj"
+dest_files=[ "res://.import/Ghosty.obj-569434c6297c0d57e773517c09fdfdbf.mesh", "res://.import/Ghosty.obj-569434c6297c0d57e773517c09fdfdbf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
