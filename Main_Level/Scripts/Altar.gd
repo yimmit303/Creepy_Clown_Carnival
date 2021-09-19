@@ -5,6 +5,8 @@ var mesh
 export var minigameName = "name"
 export var ready = false
 
+export var alwaysAccept = false
+
 var handMesh
 
 func _ready():
@@ -12,6 +14,8 @@ func _ready():
 	mesh.visible = false
 
 func _on_ArcadeRigidBody_completed_minigame(name):
+	if(alwaysAccept):
+		ready = true
 	print("checking: ", name, " vs ", minigameName)
 	if(name == minigameName):
 		print("foudn ya")
@@ -20,6 +24,8 @@ func _on_ArcadeRigidBody_completed_minigame(name):
 
 
 func _on_Player_altarSignal(name):
+	if(alwaysAccept):
+		ready = true
 	print("checking: ", name, " vs ", minigameName)
 	if(name == minigameName):
 		print("found!")
