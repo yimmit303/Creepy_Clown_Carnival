@@ -14,15 +14,8 @@ material/0 = ExtResource( 2 )
 material/1 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
-<<<<<<< Updated upstream
 transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0 )
-=======
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
->>>>>>> Stashed changes
 shape = SubResource( 3 )
