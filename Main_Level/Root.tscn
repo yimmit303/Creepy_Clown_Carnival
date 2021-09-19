@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main_Level/Scripts/DebugDraw.gd" type="Script" id=2]
@@ -9,13 +9,9 @@
 [ext_resource path="res://Main_Level/Scripts/TwinkleEffect.gd" type="Script" id=7]
 [ext_resource path="res://Main_Level/Materials/StarTwinkleMask.png" type="Texture" id=8]
 [ext_resource path="res://Main_Level/Scripts/MinigameClass.gd" type="Script" id=9]
-[ext_resource path="res://Minigames/Balloon Game/Balloon_Game.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Minigames/Pumpkin Game/PumpkinGame.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Main_Level/Environment/ThornsSmall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Main_Level/Environment/Landscape.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main_Level/Environment/SpookTree2 main.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Minigames/Skeeball Game/Skeeball Game.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Minigames/Knife Game/Knife_Game.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Main_Level/Environment/Hedge.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Main_Level/Environment/StonePathDone.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main_Level/Environment/ThornsMedium.tscn" type="PackedScene" id=19]
@@ -57,6 +53,7 @@ transform = Transform( 0.105283, 0.60646, -0.788113, -0.0803027, 0.795114, 0.601
 
 [node name="CinematicCamera" type="InterpolatedCamera" parent="."]
 transform = Transform( 1, -0.000141038, 0.000174348, 0.000148906, 0.998942, -0.0459834, -0.000167678, 0.0459834, 0.998942, 0, 7.57511, 0 )
+speed = 5.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -134,6 +131,7 @@ render_target_update_mode = 0
 "Interactable",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6348, -2.3165, 3.46841 )
+visible = false
 script = ExtResource( 7 )
 
 [node name="CoinGameArea" type="Area" parent="TwinkleEffect" groups=[
@@ -212,17 +210,17 @@ minigameName = "Booth5"
 
 [node name="Ground" parent="Node" instance=ExtResource( 13 )]
 
-[node name="game" parent="Node/Ground/Booth/StaticBody" index="0" instance=ExtResource( 15 )]
-visible = false
+[node name="StaticBody" parent="Node/Ground/Booth" index="0"]
+miniGamePath = "res://Minigames/Balloon Game/Balloon_Game.tscn"
 
-[node name="game" parent="Node/Ground/Booth2/StaticBody" index="1" instance=ExtResource( 11 )]
-visible = false
+[node name="StaticBody" parent="Node/Ground/Booth2" index="0"]
+miniGamePath = "res://Minigames/Knife Game/Knife_Game.tscn"
 
-[node name="game" parent="Node/Ground/Booth5/StaticBody" index="1" instance=ExtResource( 10 )]
-visible = false
+[node name="StaticBody" parent="Node/Ground/Booth5" index="0"]
+miniGamePath = "res://Minigames/Pumpkin Game/PumpkinGame.tscn"
 
-[node name="game" parent="Node/Ground/Booth3/StaticBody" index="0" instance=ExtResource( 16 )]
-visible = false
+[node name="StaticBody" parent="Node/Ground/Booth3" index="0"]
+miniGamePath = "res://Minigames/Skeeball Game/Skeeball Game.tscn"
 
 [node name="LightPost" parent="Node" instance=ExtResource( 22 )]
 
@@ -240,22 +238,14 @@ visible = false
 
 [node name="ThornsSmall" parent="Node" instance=ExtResource( 12 )]
 
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth/Platform" method="_on_Player_altarSignal"]
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth3/Platform" method="_on_Player_altarSignal"]
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth5/Platform" method="_on_Player_altarSignal"]
-[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth4/Platform" method="_on_Player_altarSignal"]
 [connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth2/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth4/Platform" method="_on_Player_altarSignal"]
+[connection signal="altarSignal" from="Player" to="Altars/PentagramHitbox_Booth5/Platform" method="_on_Player_altarSignal"]
 [connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
 [connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Player" method="_on_ArcadeRigidBody_completed_minigame"]
-[connection signal="game_lost" from="Node/Ground/Booth/StaticBody/game" to="Node/Ground/Booth/StaticBody" method="_on_game_game_lost"]
-[connection signal="game_won" from="Node/Ground/Booth/StaticBody/game" to="Node/Ground/Booth/StaticBody" method="_on_game_game_won"]
-[connection signal="game_lost" from="Node/Ground/Booth2/StaticBody/game" to="Node/Ground/Booth2/StaticBody" method="_on_game_game_lost"]
-[connection signal="game_won" from="Node/Ground/Booth2/StaticBody/game" to="Node/Ground/Booth2/StaticBody" method="_on_game_game_won"]
-[connection signal="game_lost" from="Node/Ground/Booth5/StaticBody/game" to="Node/Ground/Booth5/StaticBody" method="_on_game_game_lost"]
-[connection signal="game_won" from="Node/Ground/Booth5/StaticBody/game" to="Node/Ground/Booth5/StaticBody" method="_on_game_game_won"]
-[connection signal="game_lost" from="Node/Ground/Booth3/StaticBody/game" to="Node/Ground/Booth3/StaticBody" method="_on_game_game_lost"]
-[connection signal="game_won" from="Node/Ground/Booth3/StaticBody/game" to="Node/Ground/Booth3/StaticBody" method="_on_game_game_won"]
 
 [editable path="Player"]
 [editable path="Altars/PentagramHitbox_Booth"]

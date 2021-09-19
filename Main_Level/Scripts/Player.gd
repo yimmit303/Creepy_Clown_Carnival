@@ -211,9 +211,11 @@ func _input(event):
 func _on_ArcadeRigidBody_completed_minigame(name):
 	print("completed miniGame! ", name)
 	
-	if(!ghosts.has(name))
+	if(!ghosts.has(name)):
 		ghosts.append(name)
 		numGamesComplete += 1
+		if(numGamesComplete >= 5):
+			get_tree().change_scene("Credits/Credits.tscn")
 	
 	emit_signal("altarSignal", name)
 
