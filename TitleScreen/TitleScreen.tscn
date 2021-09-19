@@ -1,10 +1,32 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://TitleScreen/Title-Credits/titlescreen.jpg" type="Texture" id=1]
 [ext_resource path="res://TitleScreen/Title-Credits/ticket.png" type="Texture" id=2]
 [ext_resource path="res://TitleScreen/Title-Credits/credits.png" type="Texture" id=3]
 [ext_resource path="res://TitleScreen/Start.gd" type="Script" id=4]
 [ext_resource path="res://Main_Level/Sounds/Carnival_Theme.ogg" type="AudioStream" id=5]
+[ext_resource path="res://TitleScreen/quitTicket.tscn" type="PackedScene" id=6]
+[ext_resource path="res://TitleScreen/Credits.gd" type="Script" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
 
 [node name="TitleScreen" type="Node2D"]
 
@@ -25,22 +47,44 @@ scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 2 )
 
 [node name="Start" type="Button" parent="ticket"]
-visible = false
 margin_left = -263.0
 margin_top = -133.0
 margin_right = 263.0
 margin_bottom = 134.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="credits" type="Sprite" parent="."]
-position = Vector2( 502.99, 505.097 )
+position = Vector2( 504.972, 405.996 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
+
+[node name="Credits" type="Button" parent="credits"]
+margin_left = -260.0
+margin_top = -131.0
+margin_right = 260.0
+margin_bottom = 138.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quitTicket" parent="." instance=ExtResource( 6 )]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
 [connection signal="pressed" from="ticket/Start" to="ticket/Start" method="_on_Start_pressed"]
+[connection signal="pressed" from="credits/Credits" to="credits/Credits" method="_on_Credits_pressed"]
