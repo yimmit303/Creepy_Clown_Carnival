@@ -29,6 +29,10 @@ var current_minigame = null
 
 var debugCamera
 
+var numGamesComplete = 0
+
+signal interactWithObject
+
 func swapCamera(currentMachine):
 	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
 	
@@ -85,7 +89,7 @@ func _physics_process(delta):
 		else:
 			#start minigame here!
 			if(current_minigame and !current_minigame.running):
-				print('in player starting game')
+				#print('in player starting game')
 				self.visible = false
 				hand.set_monitoring(false)
 				hand.set_monitorable(false)
@@ -93,7 +97,7 @@ func _physics_process(delta):
 				current_minigame.startGame()
 
 func stop_mini_game():
-	print("stopping game")
+	#print("stopping game")
 	self.visible = true
 	#handModel.visible = true
 	in_minigame = false
@@ -198,3 +202,12 @@ func _input(event):
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
+
+
+func _on_ArcadeRigidBody_completed_minigame():
+	numGamesComplete += 1
+
+
+func _on_HandCollider_interactWith(object):
+	#print("player interact with: ", object.name)
+	emit_signal("interactWithObject", object)

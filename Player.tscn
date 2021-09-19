@@ -47,3 +47,5 @@ shape = SubResource( 4 )
 transform = Transform( -1.93536e-07, 0, 0.951432, 0, 0.985607, 0, -0.90322, 0, -8.48397e-09, 0, 0, 0.0990505 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 2 )
+
+[connection signal="interactWith" from="HandCollider" to="." method="_on_HandCollider_interactWith"]
