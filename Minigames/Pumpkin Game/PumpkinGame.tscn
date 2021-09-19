@@ -1,71 +1,187 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Minigames/Pumpkin Game/PumpkinGame.gd" type="Script" id=1]
-[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Barrel.png" type="Texture" id=2]
+[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Pumpkin-Cauldron.png" type="Texture" id=2]
 [ext_resource path="res://Minigames/Pumpkin Game/Sprites/Rod.png" type="Texture" id=3]
 [ext_resource path="res://Minigames/Pumpkin Game/Hook.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Pumpkin.png" type="Texture" id=5]
+[ext_resource path="res://Minigames/Pumpkin Game/PumpkinMover.gd" type="Script" id=5]
 [ext_resource path="res://Minigames/Balloon Game/Sounds/Balloon.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Minigames/Timer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Minigames/Pumpkin Game/Pumpkin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Selector.png" type="Texture" id=11]
+[ext_resource path="res://Minigames/Pumpkin Game/Matcher.gd" type="Script" id=12]
+[ext_resource path="res://Minigames/Pumpkin Game/LineDrawer.gd" type="Script" id=13]
+[ext_resource path="res://Minigames/Pumpkin Game/Pumpkin-BG.png" type="Texture" id=14]
+[ext_resource path="res://Minigames/Pumpkin Game/Checks.gd" type="Script" id=15]
+[ext_resource path="res://Minigames/Pumpkin Game/Sprites/Check.png" type="Texture" id=16]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 60.0933, -1.57312, -60.0933, 1.57312, 933.88, 527.77, 47.706, -25.9438, -47.706, 25.9438, 767.918, 562.664, 4.23307, -48.1512, -4.23307, 48.1512, 660.584, 688.998, -37.0394, -13.2283, 37.0394, 13.2283, 774.918, 788.998, -40.2887, -1.72493, 40.2887, 1.72493, 968.585, 825.998, -32.2772, 30.6898, 32.2772, -30.6898, 1185.58, 764.664, 20.6362, 21.6945, -20.6362, -21.6945, 1180.92, 610.998, 46.8791, 11.1241, -46.8791, -11.1241, 1076.75, 544.702, 61.0372, -0.629249, -61.0372, 0.629249, 933.88, 527.77 )
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 269.754, 16.8751 )
 
 [node name="PumpkinGame" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="BG" type="ColorRect" parent="."]
-margin_left = 160.0
-margin_top = 90.0
-margin_right = 1760.0
-margin_bottom = 990.0
-color = Color( 0.254902, 0.184314, 0.0352941, 1 )
+[node name="Pumpkin-BG" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 14 )
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="Barrel" type="Sprite" parent="."]
-position = Vector2( 995.782, 607.344 )
-scale = Vector2( 22.6488, 23.8063 )
+[node name="Pumpkin-Cauldron" type="Sprite" parent="."]
+position = Vector2( 973.026, 629.893 )
+scale = Vector2( 0.746881, 0.801125 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Rod" type="Sprite" parent="."]
 position = Vector2( 1306.75, 388.885 )
 scale = Vector2( 28.3253, 14.3316 )
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RodPoint" type="Node2D" parent="Rod"]
+position = Vector2( -10.5478, -13.8486 )
 
 [node name="Hook" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1007.87, 337.714 )
-scale = Vector2( 4.97747, 4.68285 )
-
-[node name="Pumpkin" type="Sprite" parent="."]
-position = Vector2( 750.533, 703.545 )
-scale = Vector2( 3.141, 3.141 )
-texture = ExtResource( 5 )
-
-[node name="Pumpkin2" type="Sprite" parent="."]
-position = Vector2( 874.844, 613.844 )
-rotation = 2.63196
-scale = Vector2( 2.7437, 3.22929 )
-texture = ExtResource( 5 )
-
-[node name="Pumpkin3" type="Sprite" parent="."]
-position = Vector2( 1129.47, 782.652 )
-scale = Vector2( 3.82523, 4.11217 )
-texture = ExtResource( 5 )
-
-[node name="Pumpkin4" type="Sprite" parent="."]
-position = Vector2( 1126.29, 579.588 )
-scale = Vector2( 3.18514, 2.23604 )
-texture = ExtResource( 5 )
-
-[node name="Pumpkin5" type="Sprite" parent="."]
-position = Vector2( 1014.69, 677.059 )
-scale = Vector2( 3.75902, 4.31082 )
-texture = ExtResource( 5 )
+position = Vector2( 1000, 270 )
+scale = Vector2( 1, 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -18.107
 
 [node name="Timer" parent="." instance=ExtResource( 7 )]
-time_left = 60
+time_left = 120
 
+[node name="PumpkinMover" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="PumpkinPath" type="Path2D" parent="PumpkinMover"]
+position = Vector2( 55.0822, 1.00235 )
+curve = SubResource( 1 )
+
+[node name="PumpkinPathFollow1" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow1" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow2" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow2" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow3" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow3" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow4" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow4" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow5" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow5" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow6" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow6" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow7" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow7" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="PumpkinPathFollow8" type="PathFollow2D" parent="PumpkinMover/PumpkinPath"]
+position = Vector2( 933.88, 527.77 )
+rotate = false
+
+[node name="Pumpkin" parent="PumpkinMover/PumpkinPath/PumpkinPathFollow8" instance=ExtResource( 10 )]
+position = Vector2( -0.395813, 0.760132 )
+
+[node name="Matcher" type="Node2D" parent="."]
+position = Vector2( -30.6667, -95.3333 )
+script = ExtResource( 12 )
+
+[node name="Selector" type="Sprite" parent="Matcher"]
+position = Vector2( 565.558, 497.514 )
+texture = ExtResource( 11 )
+
+[node name="Selector2" type="Sprite" parent="Matcher"]
+position = Vector2( 339.558, 498.181 )
+texture = ExtResource( 11 )
+
+[node name="Checks" type="Node2D" parent="."]
+position = Vector2( -30.6667, -95.3333 )
+script = ExtResource( 15 )
+
+[node name="Check" type="Sprite" parent="Checks"]
+visible = false
+position = Vector2( 328.031, 683.259 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 16 )
+
+[node name="Check2" type="Sprite" parent="Checks"]
+visible = false
+position = Vector2( 330.407, 779.476 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 16 )
+
+[node name="Check3" type="Sprite" parent="Checks"]
+visible = false
+position = Vector2( 331.595, 877.474 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 16 )
+
+[node name="LineDrawer" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="LoseScreen" parent="." instance=ExtResource( 8 )]
+position = Vector2( 956.117, 487.53 )
+
+[node name="WinScreen" parent="." instance=ExtResource( 9 )]
+position = Vector2( 957.06, 486.588 )
+
+[node name="HookStopper" type="Area2D" parent="."]
+position = Vector2( 977.613, 917.032 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookStopper"]
+position = Vector2( 5.34546, 23.7573 )
+shape = SubResource( 2 )
+
+[connection signal="fished_pumpkin" from="Hook" to="Matcher" method="_get_pumpkin"]
 [connection signal="time_out" from="Timer" to="." method="_on_game_lost"]
+[connection signal="correct_match" from="Matcher" to="Checks" method="_on_Matcher_correct_match"]
+[connection signal="matching_done" from="Matcher" to="Hook" method="_on_Matcher_matching_done"]
+[connection signal="matching_started" from="Matcher" to="Hook" method="_on_Matcher_matching_started"]
+[connection signal="return_pumpkins" from="Matcher" to="PumpkinMover" method="_on_return_pumpkins"]
+[connection signal="all_checks" from="Checks" to="." method="_on_game_won"]

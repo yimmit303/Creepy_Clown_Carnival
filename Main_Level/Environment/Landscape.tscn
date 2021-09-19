@@ -1,0 +1,205 @@
+[gd_scene load_steps=66 format=2]
+
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree2_Tree_0SG_BaseColor.png" type="Texture" id=1]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/LandscapeBaseColor3.jpg" type="Texture" id=2]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/LandscapeNormal.png" type="Texture" id=3]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree3Uv_Tree_0SG1_Normal.png" type="Texture" id=4]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree3Uv_Tree_0SG1_BaseColor.png" type="Texture" id=5]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree2_Tree_0SG_Normal.png" type="Texture" id=6]
+[ext_resource path="res://Main_Level/Environment/Thorns2.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://Main_Level/Environment/Booth.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://Main_Level/Environment/SpookTree_2.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://Main_Level/Environment/SpookTree3.obj" type="ArrayMesh" id=10]
+[ext_resource path="res://Main_Level/Environment/Hedge.obj" type="ArrayMesh" id=11]
+[ext_resource path="res://Main_Level/Environment/Thorns3.obj" type="ArrayMesh" id=12]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree2_Tree_0SG_Roughness.png" type="Texture" id=13]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree3Uv_Tree_0SG1_Roughness.png" type="Texture" id=14]
+[ext_resource path="res://Main_Level/Environment/StonePathDone.obj" type="ArrayMesh" id=15]
+[ext_resource path="res://Main_Level/Environment/LightPost.obj" type="ArrayMesh" id=16]
+[ext_resource path="res://Main_Level/Environment/Thorns1.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://Main_Level/Environment/HandStand.obj" type="ArrayMesh" id=18]
+[ext_resource path="res://Main_Level/Environment/SpookTree1.obj" type="ArrayMesh" id=19]
+[ext_resource path="res://Main_Level/Environment/Landscape.obj" type="ArrayMesh" id=20]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HandStand_lambert2_Normal.png" type="Texture" id=21]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HedgePaintedNormal.jpg" type="Texture" id=22]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Booth_lambert1_Metalness.png" type="Texture" id=23]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree2_Tree_0SG_Metalness.png" type="Texture" id=24]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/ThornsUV_Tree_0SG_Roughness.png" type="Texture" id=25]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Booth_lambert1_BaseColor.png" type="Texture" id=26]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HandStand_lambert1_BaseColor.png" type="Texture" id=27]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Booth_lambert1_Normal.png" type="Texture" id=28]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Tree1Uv_Tree_0SG_Roughness.png" type="Texture" id=29]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns3UV_initialShadingGroup_BaseColor.png" type="Texture" id=30]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns2UV_Thorns2_BaseColor.png" type="Texture" id=31]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/ThornsUV_Tree_0SG_Metalness.png" type="Texture" id=32]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns2UV_Thorns2_Roughness.png" type="Texture" id=33]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Tree1Uv_Tree_0SG_BaseColor.png" type="Texture" id=34]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns2UV_Thorns2_Normal.png" type="Texture" id=35]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/ThornsUV_Tree_0SG_BaseColor.png" type="Texture" id=36]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/LightPost_lambert1_Normal.png" type="Texture" id=37]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/LightPost_lambert1_Roughness.png" type="Texture" id=38]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Booth_lambert1_Roughness.png" type="Texture" id=39]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/SpookTree3Uv_Tree_0SG1_Metalness.png" type="Texture" id=40]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HandStand_lambert1_Normal.png" type="Texture" id=41]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/ThornsUV_Tree_0SG_Normal.png" type="Texture" id=42]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Tree1Uv_Tree_0SG_Normal.png" type="Texture" id=43]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Tree1Uv_Tree_0SG_Metalness.png" type="Texture" id=44]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns3UV_initialShadingGroup_Normal.png" type="Texture" id=45]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HandStand_lambert2_Roughness.png" type="Texture" id=46]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HedgePaintedText.jpg" type="Texture" id=47]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HandStand_lambert1_Roughness.png" type="Texture" id=48]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/LightPost_lambert1_BaseColor.png" type="Texture" id=49]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/HandStand_lambert2_BaseColor.png" type="Texture" id=50]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns2UV_Thorns2_Metalness.png" type="Texture" id=51]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns3UV_initialShadingGroup_Metalness.png" type="Texture" id=52]
+[ext_resource path="res://Main_Level/Environment/EnvironmentMats/Thorns3UV_initialShadingGroup_Roughness.png" type="Texture" id=53]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 34 )
+metallic_texture = ExtResource( 44 )
+roughness_texture = ExtResource( 29 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 43 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 5 )
+metallic_texture = ExtResource( 40 )
+roughness_texture = ExtResource( 14 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 1 )
+metallic_texture = ExtResource( 24 )
+roughness_texture = ExtResource( 13 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 6 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 50 )
+roughness_texture = ExtResource( 46 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 21 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 27 )
+roughness_texture = ExtResource( 48 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 41 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_texture = ExtResource( 26 )
+metallic_texture = ExtResource( 23 )
+roughness_texture = ExtResource( 39 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 28 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_texture = ExtResource( 49 )
+roughness_texture = ExtResource( 38 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 37 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_texture = ExtResource( 47 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 22 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_texture = ExtResource( 36 )
+metallic_texture = ExtResource( 32 )
+roughness_texture = ExtResource( 25 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 42 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_texture = ExtResource( 31 )
+metallic_texture = ExtResource( 51 )
+roughness_texture = ExtResource( 33 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 35 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_texture = ExtResource( 30 )
+metallic_texture = ExtResource( 52 )
+roughness_texture = ExtResource( 53 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 45 )
+
+[node name="Landscape" type="MeshInstance"]
+transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -1.19541, 1.70683, 17.3508 )
+mesh = ExtResource( 20 )
+material/0 = SubResource( 1 )
+
+[node name="SpookTree1" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2689.85, 94.3692, 1246.9 )
+mesh = ExtResource( 19 )
+material/0 = SubResource( 2 )
+
+[node name="SpookTree3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1751.97, 89.2146, 3838.6 )
+mesh = ExtResource( 10 )
+material/0 = SubResource( 3 )
+
+[node name="SpookTree_2" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -2170.49, 114.307, 1959.22 )
+mesh = ExtResource( 9 )
+material/0 = SubResource( 4 )
+
+[node name="HandStand" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3342.37, 298.066, -766.962 )
+mesh = ExtResource( 18 )
+material/0 = SubResource( 5 )
+material/1 = SubResource( 6 )
+
+[node name="Booth" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5219.31, 79.5867, -5471.39 )
+mesh = ExtResource( 8 )
+material/0 = SubResource( 7 )
+
+[node name="LightPost" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2088.15, 88.7273, 715.348 )
+mesh = ExtResource( 16 )
+material/0 = SubResource( 8 )
+
+[node name="Hedge" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7894.74, 231.423, -3236.4 )
+mesh = ExtResource( 11 )
+material/0 = SubResource( 9 )
+
+[node name="StonePathDone" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1915.45, 94.4646, -794.503 )
+mesh = ExtResource( 15 )
+material/0 = null
+
+[node name="Thorns1" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1727.3, 96.6371, -5332.32 )
+mesh = ExtResource( 17 )
+material/0 = SubResource( 10 )
+
+[node name="Thorns2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1681.25, 92.443, -2731.85 )
+mesh = ExtResource( 7 )
+material/0 = SubResource( 11 )
+
+[node name="Thorns3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1264.3, 80.2512, -3885.25 )
+mesh = ExtResource( 12 )
+material/0 = SubResource( 12 )

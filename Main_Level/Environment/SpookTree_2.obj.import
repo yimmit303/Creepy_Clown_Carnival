@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/SpookTree_2.obj-6b132d2a2cbaae7e374a572a922dd495.mesh"
+
+[deps]
+
+files=[ "res://.import/SpookTree_2.obj-6b132d2a2cbaae7e374a572a922dd495.mesh" ]
+
+source_file="res://Main_Level/Environment/SpookTree_2.obj"
+dest_files=[ "res://.import/SpookTree_2.obj-6b132d2a2cbaae7e374a572a922dd495.mesh", "res://.import/SpookTree_2.obj-6b132d2a2cbaae7e374a572a922dd495.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

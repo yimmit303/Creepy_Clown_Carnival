@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Thorns1.obj-900875ed2b92b1532d6e8ed7133475ce.mesh"
+
+[deps]
+
+files=[ "res://.import/Thorns1.obj-900875ed2b92b1532d6e8ed7133475ce.mesh" ]
+
+source_file="res://Main_Level/Environment/Thorns1.obj"
+dest_files=[ "res://.import/Thorns1.obj-900875ed2b92b1532d6e8ed7133475ce.mesh", "res://.import/Thorns1.obj-900875ed2b92b1532d6e8ed7133475ce.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

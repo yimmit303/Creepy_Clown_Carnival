@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball Game.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball_Spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Minigames/Skeeball Game/Skeeball_Ramp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Minigames/Skeeball Game/ProgressBar.gd" type="Script" id=4]
 [ext_resource path="res://Minigames/Effects/one.png" type="Texture" id=5]
+[ext_resource path="res://Minigames/Effects/Scoreboard.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Main_Level/Sounds/Carnival_Theme.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=9]
 
 [node name="Skeeball Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,6 +34,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Moosic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Scoreboard" parent="." instance=ExtResource( 6 )]
+
+[node name="LoseScreen" parent="." instance=ExtResource( 9 )]
+position = Vector2( 951.425, 470.679 )
+
+[node name="WinScreen" parent="." instance=ExtResource( 8 )]
+position = Vector2( 938.84, 465.645 )
+
+[connection signal="pass_on" from="Skeeball_Ramp" to="." method="_on_Skeeball_Ramp_pass_on"]
 [connection signal="charging" from="Skeeball_Spawner" to="ProgressBar" method="_on_Skeeball_Spawner_charging"]
 [connection signal="not_charging" from="Skeeball_Spawner" to="ProgressBar" method="_on_Skeeball_Spawner_not_charging"]
 [connection signal="shoot" from="ProgressBar" to="Skeeball_Spawner" method="_on_ProgressBar_shoot"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Minigames/Knife Game/Scoreboard.gd" type="Script" id=1]
+
+[node name="Scoreboard" type="RichTextLabel"]
+margin_left = 253.938
+margin_top = 187.071
+margin_right = 410.938
+margin_bottom = 247.071
+rect_scale = Vector2( 1, 1.01354 )
+text = "Lives:
+Score:"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
