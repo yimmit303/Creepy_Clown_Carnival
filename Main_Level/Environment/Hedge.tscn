@@ -18,7 +18,7 @@ transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 94.6232, 1.90372, 
 mesh = ExtResource( 1 )
 material/0 = SubResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 2 )
+[node name="StaticBody" type="StaticBody" parent="."]
 
-[node name="StaticBody" type="StaticBody" parent="CollisionShape"]
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 2 )
