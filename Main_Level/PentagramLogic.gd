@@ -24,6 +24,7 @@ func interacted():
 
 
 func _on_Player_interactWithObject(object):
+	print("interact with altar")
 	if(object == self):
 		interacted()
 	

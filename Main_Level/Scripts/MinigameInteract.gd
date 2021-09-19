@@ -1,7 +1,7 @@
 extends Spatial
 
 var player 
-var hand
+#var hand
 var rigidBoy
 
 var normalDistanceFromScreen = 15
@@ -11,14 +11,14 @@ func _ready():
 	#player = $Player
 	
 	player = get_node("../Player")
-	hand = get_node("../Player/HandCollider")
+	#hand = get_node("../Player/HandCollider")
 	#print("player: ", player)
 	
 	rigidBoy = $ArcadeRigidBody
 	
 	rigidBoy.cameraZoom = $ArcadeRigidBody/ArcadeScreen/CameraSnapLocation #this must be oriented so that it faces the screen
 	
-	var physicalScreen = $ArcadeScreen
+	#var physicalScreen = $ArcadeScreen
 	rigidBoy.cameraZoom.transform.origin.x = -normalDistanceFromScreen
 	rigidBoy.player = player
 	

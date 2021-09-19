@@ -32,6 +32,7 @@ var debugCamera
 var numGamesComplete = 0
 
 signal interactWithObject
+signal altarSignal
 
 func swapCamera(currentMachine):
 	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
@@ -72,6 +73,7 @@ func _ready():
 	camera_pos = $Pivot/CameraPivot
 	
 	hand = $HandCollider
+	hand.player = self
 	
 	main_camera = $Pivot/CameraPivot/Camera
 	#cinematic_camera = $Pivot/CameraPivot/InterpolatedCamera
@@ -204,9 +206,11 @@ func _input(event):
 		rotation_helper.rotation_degrees = camera_rot
 
 
-func _on_ArcadeRigidBody_completed_minigame():
+func _on_ArcadeRigidBody_completed_minigame(name):
+	print("completed miniGame")
 	numGamesComplete += 1
-
+	
+	emit_signal("altarSignal", name)
 
 func _on_HandCollider_interactWith(object):
 	#print("player interact with: ", object.name)
