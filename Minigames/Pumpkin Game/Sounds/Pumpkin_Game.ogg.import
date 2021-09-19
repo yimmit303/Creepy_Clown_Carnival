@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Pumpkin_Game.ogg-79e96f52999a14b30441999cf4988667.oggstr"
+
+[deps]
+
+source_file="res://Minigames/Pumpkin Game/Sounds/Pumpkin_Game.ogg"
+dest_files=[ "res://.import/Pumpkin_Game.ogg-79e96f52999a14b30441999cf4988667.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
