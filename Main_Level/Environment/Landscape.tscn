@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Main_Level/Environment/SpookTree3 main.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main_Level/Environment/EnvironmentMats/LandscapeBaseColor3.jpg" type="Texture" id=2]
 [ext_resource path="res://Main_Level/Environment/EnvironmentMats/LandscapeNormal.png" type="Texture" id=3]
 [ext_resource path="res://Main_Level/Environment/SpookTree2 main.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Main_Level/Environment/HandStand.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Main_Level/Environment/Booth.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Main_Level/Environment/LightPost.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Main_Level/Environment/Hedge.tscn" type="PackedScene" id=8]
@@ -13,7 +12,6 @@
 [ext_resource path="res://Main_Level/Environment/ThornsSmall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Main_Level/Environment/ThornsLarge.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main_Level/Environment/ThornsMedium.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Main_Level/Environment/GhostyReborn.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Main_Level/Environment/Landscape.obj" type="ArrayMesh" id=20]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -43,13 +41,8 @@ shape = SubResource( 2 )
 
 [node name="SpookTree2 main" parent="." instance=ExtResource( 4 )]
 
-[node name="HandStand" parent="." instance=ExtResource( 5 )]
-
 [node name="Booth" parent="." instance=ExtResource( 6 )]
 transform = Transform( -0.00388228, 0, 0.0144889, 0, 0.015, 0, -0.0144889, 0, -0.00388228, -39.481, -0.373822, 14.1586 )
-
-[node name="StaticBody" parent="Booth" index="0"]
-wonGame = true
 
 [node name="Booth2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.0038823, 0, 0.0144889, 0, 0.015, 0, -0.0144889, 0, 0.0038823, -42.7294, -1.40786, -58.6042 )
@@ -283,8 +276,6 @@ transform = Transform( -0.011327, 0.000526565, 0.00981945, 6.96746e-06, 0.014978
 [node name="ThornsLarge" parent="." instance=ExtResource( 13 )]
 
 [node name="ThornsSmall" parent="." instance=ExtResource( 12 )]
-
-[node name="GhostyReborn" parent="." instance=ExtResource( 15 )]
 
 [editable path="Booth"]
 [editable path="Booth2"]
