@@ -34,6 +34,8 @@ var numGamesComplete = 0
 signal interactWithObject
 signal altarSignal
 
+var ghosts = []
+
 func swapCamera(currentMachine):
 	#swap over from main_camera to cinematic_camera and move it into position over the given arcade game!
 	
@@ -208,7 +210,10 @@ func _input(event):
 
 func _on_ArcadeRigidBody_completed_minigame(name):
 	print("completed miniGame! ", name)
-	numGamesComplete += 1
+	
+	if(!ghosts.has(name))
+		ghosts.append(name)
+		numGamesComplete += 1
 	
 	emit_signal("altarSignal", name)
 
