@@ -5,6 +5,8 @@ var ammo = 20
 var min_score = 300
 var done = false
 var timer = 2.0
+signal game_won()
+signal game_lost()
 
 func final_check():
 	if score >= min_score and ammo == 0:
@@ -41,8 +43,10 @@ func _on_game_won():
 	make_inactive()
 	$WinScreen.play()
 	yield($WinScreen, "done_playing")
+	emit_signal("game_won")
 
 func _on_game_lost():
 	make_inactive()
 	$LoseScreen.play()
 	yield($LoseScreen, "done_playing")
+	emit_signal("game_lost")
