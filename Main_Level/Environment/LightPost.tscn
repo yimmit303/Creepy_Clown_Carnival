@@ -24,3 +24,8 @@ material/0 = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 2 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 66.6667, 0, 0, 0, -2.00218, 66.6366, 0, -66.6366, -2.00218, 0, 1795.5, 0 )
+light_energy = 2.18
+spot_range = 36.4

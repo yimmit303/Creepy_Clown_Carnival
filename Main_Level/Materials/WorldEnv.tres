@@ -2,9 +2,12 @@
 
 [resource]
 background_mode = 1
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.33
 fog_enabled = true
 fog_color = Color( 0, 0, 0, 1 )
 fog_depth_curve = 2.21914
+ssao_enabled = true
 glow_enabled = true
 glow_intensity = 4.83
 glow_strength = 1.49
