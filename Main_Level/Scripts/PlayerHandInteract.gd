@@ -15,7 +15,7 @@ func _ready():
 	
 	collisionShape = $PlayerHandCollisionShape
 
-	mat = load("res://Main_Level/Materials/DefaultMat.tres")
+	mat = load("Main_Level/Materials/DefaultMat.tres")
 
 	#set_contact_monitor(true)
 	#set_max_contacts_reported(5)
@@ -35,46 +35,20 @@ func setOutline(body, ammount = 5, enable = true):
 		#print("mesh")
 		if(par.is_in_group("Interactable")):
 			#print("interact")
-			var currentMaterial = par.get_active_material(0)
 			
-			#print(currentMaterial)
-			
-			var nextPass = currentMaterial.next_pass
-			
-			#print(nextPass)
-			
-			if(nextPass == null):
-				#nextPass = currentMaterial.duplicate()
-				nextPass = mat.duplicate()
-				#nextPass.Flags.FLAG_UNSHADED = true
-				#nextPass.set_flag(true)
-				nextPass.flags_unshaded = true
-				nextPass.set_cull_mode(1) #CullMode.CULL_FRONT
-				#nextPass.params_cull_mode = CULL_FRONT
-				nextPass.set_grow_enabled(true)
-				nextPass.set_grow(ammount)
-				currentMaterial.set_next_pass(nextPass)
-			else:
-				nextPass.set_grow(ammount)
-			ready_to_play = enable
-			if(enable):
-				currentMachine = body
-			else:
-				currentMachine = null
-	else:
-		#old code
-		
-		if(enable):
-			ammount = 0.05
-		
-		for i in range(0, body.get_child_count()):
-			var child = body.get_child(i)
-			if(child is MeshInstance and child.is_in_group("Interactable")):
-				#print(child.name)
-				var currentMaterial = child.get_active_material(0)
+			var number = par.get_surface_material_count()
+			for i in range(0, number):
+				var currentMaterial = par.get_active_material(i)
+				
+				#print(currentMaterial)
+				
 				var nextPass = currentMaterial.next_pass
+				
+				#print(nextPass)
+				
 				if(nextPass == null):
-					nextPass = currentMaterial.duplicate()
+					#nextPass = currentMaterial.duplicate()
+					nextPass = mat.duplicate()
 					#nextPass.Flags.FLAG_UNSHADED = true
 					#nextPass.set_flag(true)
 					nextPass.flags_unshaded = true
@@ -85,6 +59,44 @@ func setOutline(body, ammount = 5, enable = true):
 					currentMaterial.set_next_pass(nextPass)
 				else:
 					nextPass.set_grow(ammount)
+			ready_to_play = enable
+			if(enable):
+				currentMachine = body
+			else:
+				currentMachine = null
+	else:
+		#old code
+		
+		#if(enable):
+		#	ammount = 0.05
+		
+		for i in range(0, body.get_child_count()):
+			var child = body.get_child(i)
+			if(child is MeshInstance and child.is_in_group("Interactable")):
+				#print(child.name)
+				
+				var number = child.get_surface_material_count()
+				
+				#print(number)
+				for j in range(0, number):
+					#rint(j)
+					var currentMaterial = child.get_active_material(j)
+					print(currentMaterial)
+					var nextPass = currentMaterial.next_pass
+					if(nextPass == null):
+						nextPass = currentMaterial.duplicate()
+						#nextPass.Flags.FLAG_UNSHADED = true
+						#nextPass.set_flag(true)
+						#nextPass.emission.enabled = true
+						
+						nextPass.flags_unshaded = true
+						nextPass.set_cull_mode(1) #CullMode.CULL_FRONT
+						#nextPass.params_cull_mode = CULL_FRONT
+						nextPass.set_grow_enabled(true)
+						nextPass.set_grow(ammount)
+						currentMaterial.set_next_pass(nextPass)
+					else:
+						nextPass.set_grow(ammount)
 		#print("enable that boi")
 		
 		ready_to_play = enable

@@ -5,6 +5,8 @@ var mesh
 export var minigameName = "name"
 var ready = false
 
+var handMesh
+
 func _ready():
 	mesh = $Idol
 	mesh.visible = false

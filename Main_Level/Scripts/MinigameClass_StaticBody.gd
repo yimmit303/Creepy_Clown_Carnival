@@ -5,6 +5,8 @@ var running = false
 var player
 export var runOnce = false
 
+export var wonGame = false
+
 signal completed_minigame
 
 func startGame():
@@ -29,13 +31,17 @@ func finishGame():
 	#print("finished game: ", player)
 	player.stop_mini_game()
 	
-	player._on_ArcadeRigidBody_completed_minigame(self.get_parent().name)
+	if(wonGame):
+		playerCompletedGameSuccessfully()
 	
 	#emit_signal("completed_minigame", self.name)
 	
 	if(runOnce):
 		#destroys this things parent!
 		get_node("../").queue_free()
+		
+func playerCompletedGameSuccessfully():	
+	player._on_ArcadeRigidBody_completed_minigame(self.get_parent().name)
 		
 func _ready():
 	cameraZoom = self

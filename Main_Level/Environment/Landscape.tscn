@@ -52,21 +52,20 @@ visible = false
 [node name="Booth" parent="." instance=ExtResource( 6 )]
 transform = Transform( -0.00388228, 0, 0.0144889, 0, 0.015, 0, -0.0144889, 0, -0.00388228, -39.481, -0.373822, 14.1586 )
 
+[node name="StaticBody" parent="Booth" index="0"]
+wonGame = true
+
 [node name="Booth2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.0038823, 0, 0.0144889, 0, 0.015, 0, -0.0144889, 0, 0.0038823, -42.7294, -1.40786, -58.6042 )
-visible = false
 
 [node name="Booth5" parent="." instance=ExtResource( 6 )]
 transform = Transform( -9.58888e-09, 0, -0.015, 0, 0.015, 0, 0.015, 0, -9.58888e-09, 107.978, -0.14888, -18.992 )
-visible = false
 
 [node name="Booth3" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.015, 0, -1.04774e-08, 0, 0.015, 0, 1.04774e-08, 0, 0.015, 47.4084, -0.373822, -101.088 )
-visible = false
 
 [node name="Booth4" parent="." instance=ExtResource( 6 )]
 transform = Transform( -0.015, 0, 1.02445e-08, 0, 0.015, 0, -1.02445e-08, 0, -0.015, 46.0803, -0.357953, 58.2624 )
-visible = false
 
 [node name="LightPost" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, -55.1201, -0.236713, -0.373144 )
@@ -297,3 +296,6 @@ visible = false
 
 [node name="LightPost4" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.000225, 0, 0, 0, 0.000225, 0, 0, 0, 0.000225, -124.348, 80.087, -12.1076 )
+
+[editable path="Booth"]
+[editable path="Booth2"]
