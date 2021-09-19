@@ -18,7 +18,9 @@ func startGame():
 	if(game != null):
 		game.visible = true
 		game.make_active()
-	
+	else:
+		wonGame = true
+		finishGame()
 	"""
 	#wait
 	var t = Timer.new()
@@ -33,6 +35,8 @@ func startGame():
 	
 func finishGame():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.grab_focus()
 	running = false
 	#print("finished game: ", player)
 	player.stop_mini_game()
