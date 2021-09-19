@@ -5,6 +5,9 @@ var timer = 30
 
 func _ready():
 	pass # Replace with function body.
+	
+func get_vel():
+	return vel
 
 func _process(delta):
 	timer -= delta
