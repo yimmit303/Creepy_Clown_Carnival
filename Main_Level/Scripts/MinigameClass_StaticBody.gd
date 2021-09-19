@@ -16,6 +16,7 @@ func startGame():
 	
 	var game = $game
 	if(game != null):
+		game.visible = true
 		game.make_active()
 	
 	"""
@@ -60,8 +61,14 @@ func _on_Player_interactWithObject(object):
 
 func _on_game_game_won():
 	wonGame = true
+	var game = $game
+	if(game != null):
+		game.visible = false
 	finishGame()
 
 func _on_game_game_lost():
 	wonGame = false
+	var game = $game
+	if(game != null):
+		game.visible = false
 	finishGame()
