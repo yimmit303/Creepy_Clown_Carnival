@@ -3,7 +3,7 @@ extends Node
 var MousePos
 var kinematicBody
 
-var coins = 0
+export var coins = 0
 
 func _ready():
 	kinematicBody = $PlayerKinematicBody
@@ -30,3 +30,7 @@ func _process(delta):
 	kinematicBody.set_global_position(MousePos)
 		
 	#kinematicBody.set_global_position(MousePos)
+
+
+func _on_ItemSpawner_addOneToPlayerCoins():
+	coins += 1

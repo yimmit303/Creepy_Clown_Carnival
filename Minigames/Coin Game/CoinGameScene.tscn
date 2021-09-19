@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Minigames/Coin Game/Scripts/PickAndGrab.gd" type="Script" id=1]
 [ext_resource path="res://Minigames/Coin Game/Materials/MousePointer.png" type="Texture" id=2]
 [ext_resource path="res://Minigames/Coin Game/Prefabs/Evilhand2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Minigames/Coin Game/Prefabs/DustBunny.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Minigames/Coin Game/Prefabs/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Minigames/Coin Game/Scripts/ItemSpawner.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -56,6 +57,10 @@ position = Vector2( 25, 50 )
 shape = SubResource( 1 )
 
 [node name="Evilhand2" parent="." instance=ExtResource( 3 )]
+
+[node name="Coin" parent="." instance=ExtResource( 5 )]
+visible = false
+active = false
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -134,7 +139,9 @@ position = Vector2( 1900, 500 )
 rotation = -1.5708
 shape = SubResource( 2 )
 
+[connection signal="addOneToPlayerCoins" from="ItemSpawner" to="PlayerNode" method="_on_ItemSpawner_addOneToPlayerCoins"]
 [connection signal="spanwedCoin" from="ItemSpawner" to="Evilhand2" method="_on_ItemSpawner_spanwedCoin"]
 [connection signal="spawnCoin" from="DustBunny_Spawnable" to="ItemSpawner" method="_on_DustBunny_Spawnable_spawnCoin"]
-[connection signal="deadHand" from="Evilhand2" to="ItemSpawner" method="_on_Evilhand2_deadHand"]
 [connection signal="deadHand" from="Evilhand2" to="PlayerNode" method="_on_Evilhand2_deadHand"]
+[connection signal="deadHand" from="Evilhand2" to="ItemSpawner" method="_on_Evilhand2_deadHand"]
+[connection signal="coinUpForGrabs" from="Coin" to="ItemSpawner" method="_on_Coin_coinUpForGrabs"]

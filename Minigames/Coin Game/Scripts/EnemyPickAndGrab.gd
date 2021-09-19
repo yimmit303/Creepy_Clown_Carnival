@@ -54,22 +54,22 @@ func _process(delta):
 		kinematicBody.position.y += sin(time) * 0.25
 	else:
 		var vec = coin.get_global_position() - kinematicBody.get_global_position()
-		
+	
 		if(vec.length() >= 500):
 			my_random_number = rng.randf_range(-200, 200)
 			vec.x += my_random_number
 			my_random_number = rng.randf_range(-200, 200)
 			vec.y += my_random_number
-		
+	
 		var velocity = vec.normalized() * maxSpeed
-		
+	
 		if(vec.length() <= 500):
 			velocity -= 1000* vec.normalized()
-		
+	
 		#kinematicBody.move_and_slide(velocity)
 		var collide_info = kinematicBody.move_and_collide(velocity)
-		
-		if(invincibleTimer <= 0 and collide_info.collider and collide_info.collider.is_in_group("Player") and click):
+	
+		if(invincibleTimer <= 0 and collide_info and collide_info.collider and collide_info.collider.is_in_group("Player") and click):
 			possible_death()
 		
 	#kinematicBody.set_global_position(MousePos)

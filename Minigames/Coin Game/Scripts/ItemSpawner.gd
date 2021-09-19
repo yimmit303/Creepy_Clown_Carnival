@@ -16,10 +16,11 @@ var dustBunnyPrefab
 var rng = RandomNumberGenerator.new()
 var my_random_number
 
-export var coinSpawnChance = 90
+export var coinSpawnChance = 0
 export var dustSpawnChance = 55
 
 signal spanwedCoin
+signal addOneToPlayerCoins
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,10 +31,6 @@ func _ready():
 	evilHandPrefab = load("res://Minigames/Coin Game/Prefabs/Evilhand2.tscn")
 	dustBunnyPrefab = load("res://Minigames/Coin Game/Prefabs/DustBunny.tscn")
 	
-	var temp = dustSpawnChance
-	dustSpawnChance = 100
-	_on_Evilhand2_deadHand(1)
-	dustSpawnChance = temp
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -46,6 +43,8 @@ func _on_DustBunny_Spawnable_spawnCoin(rigidBody):
 		var newCoin = coinPrefab.instance()
 		newCoin.set_name("coin")
 		add_child(newCoin)
+		
+		newCoin.connect("coinUpForGrabs", self, "_on_Coin_coinUpForGrabs")
 		
 		newCoin.position = rigidBody.get_global_position()
 		rng.randomize()
@@ -67,6 +66,8 @@ func _on_Evilhand2_deadHand(num = 2):
 		newHand.set_name("heilHydra" + str(j))
 		add_child(newHand)
 		
+		newHand.connect("deadHand", self, "_on_Evilhand2_deadHand")
+		
 		for i in range(0, aliveObjects.size()):
 			var child = aliveObjects[i]
 			if(child.is_in_group("Coin")):
@@ -82,4 +83,21 @@ func _on_Evilhand2_deadHand(num = 2):
 			add_child(newDust)
 			aliveObjects.append(newDust)
 		
+func _on_Coin_coinUpForGrabs(humanPointYesNo, coin):
+	print("count up")
+	print(coin)
 	
+	coin = get_node(coin)
+	
+	if(humanPointYesNo):
+		emit_signal("addOneToPlayerCoins")
+	
+	print(coin)
+	
+	for i in range(0, aliveObjects.size()):
+		var child = aliveObjects[i]
+		if(child.is_in_group("Enemy")):
+			if(child.coin == coin):
+				child.coin = null
+		
+	coin.queue_free()
