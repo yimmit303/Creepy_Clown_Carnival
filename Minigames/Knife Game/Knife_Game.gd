@@ -2,6 +2,8 @@ extends Node2D
 
 var total = 0
 var life = 10
+signal game_won()
+signal game_lost()
 
 func make_active():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -28,9 +30,11 @@ func _on_game_won():
 		make_inactive()
 		$WinScreen.play()
 		yield($WinScreen, "done_playing")
+		emit_signal("game_won")
 
 func _on_game_lost():
 	if life <= 0:
 		make_inactive()
 		$LoseScreen.play()
 		yield($LoseScreen, "done_playing")
+		emit_signal("game_lost")
