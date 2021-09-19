@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Hedge.obj-42a84f357254a8821131266e6bce3a3d.mesh"
+
+[deps]
+
+files=[ "res://.import/Hedge.obj-42a84f357254a8821131266e6bce3a3d.mesh" ]
+
+source_file="res://Main_Level/Environment/Hedge.obj"
+dest_files=[ "res://.import/Hedge.obj-42a84f357254a8821131266e6bce3a3d.mesh", "res://.import/Hedge.obj-42a84f357254a8821131266e6bce3a3d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
