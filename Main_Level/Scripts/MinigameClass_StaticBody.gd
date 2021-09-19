@@ -5,7 +5,7 @@ var running = false
 var player
 export var runOnce = false
 
-export var wonGame = false
+export var wonGame = true
 
 signal completed_minigame
 
@@ -41,6 +41,7 @@ func finishGame():
 		get_node("../").queue_free()
 		
 func playerCompletedGameSuccessfully():	
+	print("comepleted game!")
 	player._on_ArcadeRigidBody_completed_minigame(self.get_parent().name)
 		
 func _ready():

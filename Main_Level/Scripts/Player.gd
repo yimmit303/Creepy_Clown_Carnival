@@ -207,7 +207,7 @@ func _input(event):
 
 
 func _on_ArcadeRigidBody_completed_minigame(name):
-	print("completed miniGame")
+	print("completed miniGame! ", name)
 	numGamesComplete += 1
 	
 	emit_signal("altarSignal", name)
