@@ -8,3 +8,6 @@ func play():
 	$Tween.start()
 	yield($Tween,"tween_all_completed")
 	emit_signal("done_playing")
+
+func reset():
+	self.modulate.a = 0
