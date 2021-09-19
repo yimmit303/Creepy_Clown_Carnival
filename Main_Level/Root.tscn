@@ -203,8 +203,8 @@ transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 9, 0 )
 mesh = SubResource( 13 )
 material/0 = null
 
-[connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
-[connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
 [connection signal="interactWithObject" from="Player" to="Altars/PentagramHitbox" method="_on_Player_interactWithObject"]
-[connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Altars/PentagramHitbox/Platform" method="_on_ArcadeRigidBody_completed_minigame"]
+[connection signal="interactWithObject" from="Player" to="TwinkleEffect/CoinGameArea" method="_on_Player_interactWithObject"]
+[connection signal="interactWithObject" from="Player" to="ArcadeMachine/ArcadeRigidBody" method="_on_Player_interactWithObject"]
 [connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Player" method="_on_ArcadeRigidBody_completed_minigame"]
+[connection signal="completed_minigame" from="ArcadeMachine/ArcadeRigidBody" to="Altars/PentagramHitbox/Platform" method="_on_ArcadeRigidBody_completed_minigame"]

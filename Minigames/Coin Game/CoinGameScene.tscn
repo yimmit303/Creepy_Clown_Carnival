@@ -1,35 +1,22 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Minigames/Coin Game/Scripts/PickAndGrab.gd" type="Script" id=1]
-[ext_resource path="res://Minigames/Coin Game/Scripts/MouseInput.gd" type="Script" id=2]
-[ext_resource path="res://Minigames/Coin Game/Scripts/MoveableObject.gd" type="Script" id=3]
-[ext_resource path="res://Minigames/Coin Game/Materials/DustBunny_Particles.png" type="Texture" id=4]
-[ext_resource path="res://Minigames/Coin Game/Materials/DustBunny_center.png" type="Texture" id=5]
-[ext_resource path="res://Minigames/Coin Game/Materials/DustBunnt_Outside.png" type="Texture" id=6]
-[ext_resource path="res://Minigames/Coin Game/Materials/DustBunnt_Full.png" type="Texture" id=7]
+[ext_resource path="res://Minigames/Coin Game/Materials/MousePointer.png" type="Texture" id=2]
+[ext_resource path="res://Minigames/Coin Game/Prefabs/Evilhand2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Minigames/Coin Game/Prefabs/DustBunny.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Minigames/Coin Game/Scripts/ItemSpawner.gd" type="Script" id=8]
-[ext_resource path="res://Minigames/Coin Game/Materials/MarioCoin.png" type="Texture" id=9]
-[ext_resource path="res://Minigames/Coin Game/Scripts/CoinBounce.gd" type="Script" id=10]
 
-[sub_resource type="ParticlesMaterial" id=1]
-emission_shape = 1
-emission_sphere_radius = 500.0
-flag_disable_z = true
-spread = 170.28
-gravity = Vector3( 0, 200, 0 )
-initial_velocity = 504.0
-initial_velocity_random = 0.18
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32.0167, 54.2283 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 966.002, 95.1868 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 55.8271
-
-[node name="Node2D" type="Node2D"]
-script = ExtResource( 2 )
+[node name="Node2D" type="Node2D" groups=[
+"Coin",
+"Enemy",
+"Player",
+]]
 
 [node name="ItemSpawner" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -40,67 +27,43 @@ position = Vector2( 1700, 150 )
 [node name="SpawnLocation_Left" type="Node2D" parent="ItemSpawner"]
 position = Vector2( 200, 150 )
 
-[node name="DustBunny_Spawnable" type="Node2D" parent="."]
-position = Vector2( 866.022, 401.546 )
-script = ExtResource( 3 )
-
-[node name="RigidBody2D" type="RigidBody2D" parent="DustBunny_Spawnable"]
-input_pickable = true
-collision_layer = 512
-collision_mask = 512
-gravity_scale = 0.0
-contact_monitor = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DustBunny_Spawnable/RigidBody2D"]
-position = Vector2( -3.5636, -10.6908 )
-polygon = PoolVector2Array( -80, -60, 90, -60, 90, 90, -80, 90 )
-
-[node name="FullImage" type="Sprite" parent="DustBunny_Spawnable/RigidBody2D"]
-visible = false
-position = Vector2( 0, 3.5636 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 7 )
-
-[node name="Edges" type="Sprite" parent="DustBunny_Spawnable/RigidBody2D"]
-position = Vector2( 0, 3.5636 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
-
-[node name="DustParticles" type="Particles2D" parent="DustBunny_Spawnable/RigidBody2D"]
-scale = Vector2( 0.05, 0.05 )
-amount = 20
-lifetime = 5.0
-speed_scale = 2.21
-explosiveness = 0.34
-randomness = 0.29
-process_material = SubResource( 1 )
-texture = ExtResource( 4 )
-
-[node name="Center" type="Sprite" parent="DustBunny_Spawnable/RigidBody2D"]
-position = Vector2( 0, 3.5636 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 5 )
-
-[node name="Center_FallingApart" type="Sprite" parent="DustBunny_Spawnable/RigidBody2D"]
-position = Vector2( 0, 3.5636 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
+[node name="DustBunny_Spawnable" parent="." instance=ExtResource( 4 )]
 
 [node name="HeavyObject" type="Sprite" parent="."]
 scale = Vector2( 0.166923, 0.135908 )
 
-[node name="DemonHand" type="Sprite" parent="."]
-
-[node name="PlayerNode" type="Node" parent="."]
+[node name="PlayerNode" type="Node" parent="." groups=[
+"Player",
+]]
 script = ExtResource( 1 )
 
-[node name="PlayerHand" type="Sprite" parent="PlayerNode"]
+[node name="PlayerKinematicBody" type="KinematicBody2D" parent="PlayerNode" groups=[
+"Player",
+]]
+position = Vector2( 163.134, 28.5905 )
 
-[node name="GroundPlane" type="Node2D" parent="."]
+[node name="PlayerHand" type="Sprite" parent="PlayerNode/PlayerKinematicBody" groups=[
+"Player",
+]]
+position = Vector2( 25, 50 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="GroundPlane"]
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="PlayerNode/PlayerKinematicBody" groups=[
+"Player",
+]]
+position = Vector2( 25, 50 )
+shape = SubResource( 3 )
 
-[node name="GroundRect" type="ColorRect" parent="GroundPlane/StaticBody2D"]
+[node name="Evilhand2" parent="." instance=ExtResource( 3 )]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="GroundPlane" type="Node2D" parent="Walls"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/GroundPlane"]
+
+[node name="GroundRect" type="ColorRect" parent="Walls/GroundPlane/StaticBody2D"]
 margin_top = 1082.0
 margin_right = 180.0
 margin_bottom = 3000.0
@@ -110,26 +73,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundPlane/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/GroundPlane/StaticBody2D"]
 position = Vector2( 956, 994 )
 shape = SubResource( 2 )
 
-[node name="Coin" type="Node2D" parent="."]
-position = Vector2( 871.92, 406.945 )
+[node name="Cieling" type="Node2D" parent="Walls"]
+position = Vector2( 5.03967, -1081.01 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Coin"]
-input_pickable = true
-script = ExtResource( 10 )
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/Cieling"]
 
-[node name="Coin_Image" type="Sprite" parent="Coin/KinematicBody2D"]
-scale = Vector2( 0.15, 0.1 )
-texture = ExtResource( 9 )
+[node name="GroundRect" type="ColorRect" parent="Walls/Cieling/StaticBody2D"]
+margin_top = 1082.0
+margin_right = 180.0
+margin_bottom = 3000.0
+rect_rotation = -90.0
+color = Color( 0.580392, 0.780392, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin/KinematicBody2D"]
-scale = Vector2( 0.8, 0.8 )
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Cieling/StaticBody2D"]
+position = Vector2( 956, 994 )
+shape = SubResource( 2 )
 
-[connection signal="leftClickedSignal" from="." to="DustBunny_Spawnable" method="_on_Node2D_leftClickedSignal"]
-[connection signal="leftUnclickedSignal" from="." to="DustBunny_Spawnable" method="_on_Node2D_leftUnclickedSignal"]
-[connection signal="mouse_entered" from="DustBunny_Spawnable/RigidBody2D" to="DustBunny_Spawnable" method="_on_RigidBody2D_mouse_entered"]
-[connection signal="mouse_exited" from="DustBunny_Spawnable/RigidBody2D" to="DustBunny_Spawnable" method="_on_RigidBody2D_mouse_exited"]
+[node name="Wall1" type="Node2D" parent="Walls"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/Wall1"]
+
+[node name="GroundRect" type="ColorRect" parent="Walls/Wall1/StaticBody2D"]
+margin_left = -50.0
+margin_top = -200.0
+margin_right = 130.0
+margin_bottom = 1100.0
+color = Color( 0.580392, 0.780392, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D_1" type="CollisionShape2D" parent="Walls/Wall1/StaticBody2D"]
+position = Vector2( 35, 500 )
+rotation = -1.5708
+shape = SubResource( 2 )
+
+[node name="Wall2" type="Node2D" parent="Walls"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/Wall2"]
+
+[node name="GroundRect" type="ColorRect" parent="Walls/Wall2/StaticBody2D"]
+margin_left = 1800.0
+margin_top = -200.0
+margin_right = 1980.0
+margin_bottom = 1100.0
+color = Color( 0.580392, 0.780392, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2/StaticBody2D"]
+position = Vector2( 1900, 500 )
+rotation = -1.5708
+shape = SubResource( 2 )
+
+[connection signal="spanwedCoin" from="ItemSpawner" to="Evilhand2" method="_on_ItemSpawner_spanwedCoin"]
+[connection signal="spawnCoin" from="DustBunny_Spawnable" to="ItemSpawner" method="_on_DustBunny_Spawnable_spawnCoin"]
+[connection signal="deadHand" from="Evilhand2" to="ItemSpawner" method="_on_Evilhand2_deadHand"]
