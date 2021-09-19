@@ -63,7 +63,7 @@ stream = ExtResource( 6 )
 volume_db = -18.107
 
 [node name="Timer" parent="." instance=ExtResource( 7 )]
-time_left = 60
+time_left = 120
 
 [node name="PumpkinMover" type="Node2D" parent="."]
 script = ExtResource( 5 )

@@ -17,7 +17,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for path in $PumpkinPath.get_children():
-		path.offset += 100 * delta
+		path.offset += 150 * delta
 
 func get_pumpkins():
 	return get_tree().get_nodes_in_group("PUMPKIN")
