@@ -32,6 +32,7 @@ func startGame():
 	"""
 	
 func finishGame():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	running = false
 	#print("finished game: ", player)
 	player.stop_mini_game()
