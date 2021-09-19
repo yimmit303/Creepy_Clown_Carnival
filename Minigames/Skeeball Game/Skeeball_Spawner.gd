@@ -7,6 +7,12 @@ var disabled = true
 signal charging()
 signal not_charging()
 
+func reset():
+	force = 0
+	max_force = 30
+	disabled = true
+	emit_signal("not_charging")
+
 func activate():
 	disabled = false
 
@@ -28,7 +34,7 @@ func _process(delta):
 
 
 func _on_ProgressBar_shoot(value):
-	if get_parent().ammo > 0:
+	if get_parent().ammo > 0 and not disabled:
 		force = (value / 100) * max_force
 		var transformation = get_global_transform()
 		var new_ball = skeeball.instance()

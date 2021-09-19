@@ -5,6 +5,12 @@ var disabled = true
 var max_delay = 1.0
 var delay = 0.0
 
+func reset():
+	disabled = true
+	set_spawn = false
+	max_delay = 1.0
+	delay = 0.0
+
 func disable():
 	disabled = true
 
