@@ -1,0 +1,11 @@
+[gd_resource type="Environment" format=2]
+
+[resource]
+background_mode = 1
+fog_enabled = true
+fog_color = Color( 0, 0, 0, 1 )
+fog_depth_curve = 2.21914
+glow_enabled = true
+glow_intensity = 4.83
+glow_strength = 1.49
+glow_bicubic_upscale = true
