@@ -4,12 +4,17 @@ signal shoot(value)
 
 var charge = false
 var total = 0
+var flipper = 1
 
 func _process(delta):
 	if charge:
-		total += 100 * delta
+		total += 100 * delta * flipper
 		if total >= 100:
+			flipper = -1
 			total = 100
+		if total <= 0:
+			flipper = 1
+			total = 0
 	if not charge:
 		total = 0
 	self.value = total
