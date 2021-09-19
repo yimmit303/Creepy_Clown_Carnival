@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://TitleScreen/Title-Credits/titlescreen.jpg" type="Texture" id=1]
+[ext_resource path="res://TitleScreen/Title-Credits/ticket.png" type="Texture" id=2]
+[ext_resource path="res://TitleScreen/Title-Credits/credits.png" type="Texture" id=3]
+[ext_resource path="res://TitleScreen/Start.gd" type="Script" id=4]
+[ext_resource path="res://Main_Level/Sounds/Carnival_Theme.ogg" type="AudioStream" id=5]
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="titlescreen" type="Sprite" parent="."]
+position = Vector2( 500.013, 300.025 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="titlescreen"]
+current = true
+zoom = Vector2( 0.52, 0.56 )
+
+[node name="ticket" type="Sprite" parent="."]
+position = Vector2( 503.336, 303.415 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 2 )
+
+[node name="Start" type="Button" parent="ticket"]
+visible = false
+margin_left = -263.0
+margin_top = -133.0
+margin_right = 263.0
+margin_bottom = 134.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="credits" type="Sprite" parent="."]
+position = Vector2( 502.99, 505.097 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="pressed" from="ticket/Start" to="ticket/Start" method="_on_Start_pressed"]
