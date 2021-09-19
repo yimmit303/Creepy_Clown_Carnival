@@ -6,9 +6,6 @@ var min_score = 300
 var done = false
 var timer = 2.0
 
-func _ready():
-	make_active()
-
 func final_check():
 	if score >= min_score and ammo == 0:
 		_on_game_won()

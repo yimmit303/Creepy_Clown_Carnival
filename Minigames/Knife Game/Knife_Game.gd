@@ -3,9 +3,6 @@ extends Node2D
 var total = 0
 var life = 10
 
-func _ready():
-	make_active()
-
 func make_active():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Knife_Spawner.activate()
