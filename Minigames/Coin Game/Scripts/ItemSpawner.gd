@@ -27,9 +27,9 @@ func _ready():
 	leftSide = $SpawnLocation_Left
 	rightSide = $SpawnLocation_Right
 	
-	coinPrefab = load("res://Minigames/Coin Game/Prefabs/Coin.tscn")
-	evilHandPrefab = load("res://Minigames/Coin Game/Prefabs/Evilhand2.tscn")
-	dustBunnyPrefab = load("res://Minigames/Coin Game/Prefabs/DustBunny.tscn")
+	coinPrefab = load("Minigames/Coin Game/Prefabs/Coin.tscn")
+	evilHandPrefab = load("Minigames/Coin Game/Prefabs/Evilhand2.tscn")
+	dustBunnyPrefab = load("Minigames/Coin Game/Prefabs/DustBunny.tscn")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
