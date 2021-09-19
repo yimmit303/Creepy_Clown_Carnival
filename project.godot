@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Creepy_Clown_Carnival"
-run/main_scene="res://Main_Level/Root.tscn"
+run/main_scene="res://TitleScreen/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
