@@ -18,4 +18,14 @@ one_way_collision = true
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
+[node name="Scorething" type="RichTextLabel" parent="."]
+margin_left = -8.19957
+margin_top = 28.7175
+margin_right = 31.8004
+margin_bottom = 68.7175
+text = "XX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="body_entered" from="." to="." method="_on_Skeehole_body_entered"]

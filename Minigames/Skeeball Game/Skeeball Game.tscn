@@ -6,7 +6,7 @@
 [ext_resource path="res://Minigames/Skeeball Game/ProgressBar.gd" type="Script" id=4]
 [ext_resource path="res://Minigames/Effects/one.png" type="Texture" id=5]
 [ext_resource path="res://Minigames/Effects/Scoreboard.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Main_Level/Sounds/Carnival_Theme.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Minigames/Skeeball Game/Sounds/Skeeball.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Minigames/Effects/WinScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Minigames/Effects/LoseScreen.tscn" type="PackedScene" id=9]
 
@@ -17,14 +17,14 @@ script = ExtResource( 1 )
 position = Vector2( 946.288, 487.72 )
 
 [node name="Skeeball_Spawner" parent="." instance=ExtResource( 2 )]
-position = Vector2( 945.167, 808.381 )
+position = Vector2( 945.167, 1011.71 )
 
 [node name="ProgressBar" type="TextureProgress" parent="."]
-margin_left = 1122.99
-margin_top = 590.489
-margin_right = 1123.99
-margin_bottom = 591.489
-rect_scale = Vector2( 20, 200 )
+margin_left = 1214.25
+margin_top = 767.604
+margin_right = 1215.25
+margin_bottom = 768.604
+rect_scale = Vector2( 20, 170 )
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 5 )
 fill_mode = 3
@@ -38,6 +38,8 @@ __meta__ = {
 stream = ExtResource( 7 )
 
 [node name="Scoreboard" parent="." instance=ExtResource( 6 )]
+margin_left = 388.843
+margin_right = 545.843
 
 [node name="LoseScreen" parent="." instance=ExtResource( 9 )]
 position = Vector2( 951.425, 470.679 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Skeeball.ogg-c30af34e904169a3c51ac6cbd43881e8.oggstr"
+
+[deps]
+
+source_file="res://Minigames/Skeeball Game/Sounds/Skeeball.ogg"
+dest_files=[ "res://.import/Skeeball.ogg-c30af34e904169a3c51ac6cbd43881e8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
