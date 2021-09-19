@@ -2,8 +2,9 @@ extends Node2D
 
 var score = 0
 var ammo = 20
-var min_score = 100
+var min_score = 300
 var done = false
+var timer = 2.0
 
 func _ready():
 	make_active()
@@ -15,7 +16,10 @@ func final_check():
 		_on_game_lost()
 
 func _process(delta):
-	if ammo <= 0 and not done:
+	if ammo <= 0:
+		timer -= delta
+	if timer <= 0 and not done:
+		timer = 2.0
 		done = true
 		final_check()
 	$Scoreboard.print_text("Score: " + str(score)
@@ -35,11 +39,6 @@ func make_inactive():
 
 func _on_Skeeball_Ramp_pass_on(value):
 	score += value
-	if score >= min_score and ammo == 0:
-		_on_game_won()
-	elif score <= min_score and ammo == 0:
-		_on_game_lost()
-	
 
 func _on_game_won():
 	make_inactive()
