@@ -3,15 +3,15 @@
 [ext_resource path="res://TitleScreen/Title-Credits/quitTicket.png" type="Texture" id=1]
 [ext_resource path="res://TitleScreen/Quit.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="quitTicket" type="Sprite"]
 position = Vector2( 503.606, 488.932 )
@@ -23,11 +23,11 @@ margin_left = -257.207
 margin_top = -133.483
 margin_right = 262.793
 margin_bottom = 135.517
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 7 )
-custom_styles/focus = SubResource( 8 )
-custom_styles/disabled = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
