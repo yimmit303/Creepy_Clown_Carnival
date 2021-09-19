@@ -6,6 +6,8 @@ var currentMachine #is set by arcade machine
 
 var collisionShape
 
+signal interactWith
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("../../Player")
@@ -23,10 +25,10 @@ func _ready():
 	connect("area_exited", self, "disable_outline")
 	
 func enable_outline(body):
-	#print(body.name)
+	#print("touching: ", body.name)
 	for i in range(0, body.get_child_count()):
 		var child = body.get_child(i)
-		if(child is MeshInstance):
+		if(child is MeshInstance and child.is_in_group("Interactable")):
 			#print(child.name)
 			var currentMaterial = child.get_active_material(0)
 			var nextPass = currentMaterial.next_pass
@@ -51,7 +53,7 @@ func disable_outline(body):
 	#print(body.name)
 	for i in range(0, body.get_child_count()):
 		var child = body.get_child(i)
-		if(child is MeshInstance):
+		if(child is MeshInstance and child.is_in_group("Interactable")):
 			#print(child.name)
 			var currentMaterial = child.get_active_material(0)
 			var nextPass = currentMaterial.next_pass
@@ -75,10 +77,13 @@ func _process(delta):
 		return
 	if(ready_to_play and player.interact):
 		#print("start game!")
-		
 		#ready_to_play and currentMachine are set via arcade machine
 		if(currentMachine):
-			player.swapCamera(currentMachine)
+			#print("interact with: ", currentMachine.name)
+			emit_signal("interactWith", currentMachine)
 			
+			"""
+			player.swapCamera(currentMachine)
 			player.interact = false
 			ready_to_play = false
+			"""

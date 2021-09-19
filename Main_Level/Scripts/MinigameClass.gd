@@ -5,10 +5,12 @@ var running = false
 var player
 export var runOnce = false
 
+signal completed_minigame
+
 func startGame():
 	#this will start the game
 	running = true
-	print("starting game now!")
+	#print("starting game now!")
 	
 	#wait
 	var t = Timer.new()
@@ -24,8 +26,10 @@ func startGame():
 	
 func finishGame():
 	running = false
-	print("finished game: ", player)
+	#print("finished game: ", player)
 	player.stop_mini_game()
+	
+	emit_signal("completed_minigame", self.name)
 	
 	if(runOnce):
 		#destroys this things parent!
@@ -34,3 +38,8 @@ func finishGame():
 func _ready():
 	cameraZoom = self
 
+func _on_Player_interactWithObject(object):
+	if(object == self):
+		player.swapCamera(self)
+		player.interact = false
+		player.hand.ready_to_play = false
