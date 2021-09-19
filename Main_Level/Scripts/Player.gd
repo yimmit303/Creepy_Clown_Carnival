@@ -77,6 +77,8 @@ func _ready():
 	hand = $HandCollider
 	hand.player = self
 	
+	$AudioStreamPlayer.play()
+	
 	main_camera = $Pivot/CameraPivot/Camera
 	#cinematic_camera = $Pivot/CameraPivot/InterpolatedCamera
 	cinematic_camera = get_node("../CinematicCamera")
@@ -98,6 +100,7 @@ func _physics_process(delta):
 				hand.set_monitoring(false)
 				hand.set_monitorable(false)
 				#handModel.visible = false
+				$AudioStreamPlayer.stop()
 				current_minigame.startGame()
 
 func stop_mini_game():
@@ -112,6 +115,8 @@ func stop_mini_game():
 	main_camera.current = true
 	debugCamera.current = false
 	cinematic_camera.current = false
+	
+	$AudioStreamPlayer.play()
 
 func check_camera_progress():
 	var location = cinematic_camera.get_global_transform().origin
